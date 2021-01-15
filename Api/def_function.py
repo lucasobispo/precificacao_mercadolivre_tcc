@@ -28,5 +28,5 @@ for id in category_id:
         print(inicio)
         inicio =  inicio + ((total_pagina) - (inicio))
 
-toTextS3('dados-mercadolivre', 'dados1401',df_concat)
+toTextS3('dados-mercadolivre', 'dados1401.csv',df_concat)
 
