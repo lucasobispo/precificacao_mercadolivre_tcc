@@ -11,7 +11,7 @@ for id in category_id:
   qtd_por_extracao = 50
   
 
-  while(inicio < 2500):
+  while(inicio < total_pagina):
     if inicio >= 0 & inicio<50:
       df_concat = df_concat.append(chamando_api(0,id)[0],ignore_index=True)
       print(inicio)
@@ -28,6 +28,5 @@ for id in category_id:
         print(inicio)
         inicio =  inicio + ((total_pagina) - (inicio))
 
-df_concat_csv = pd.DataFrame(df_concat).to_csv(index=None, header=True, sep=";")
+toTextS3('dados-mercadolivre', 'dados1401',df_concat)
 
-upload_to_aws(df_concat_csv, 'dados-mercadolivre/', 'teste.txt')
