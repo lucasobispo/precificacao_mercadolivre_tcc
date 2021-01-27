@@ -17,7 +17,7 @@ def pega_dados_by_category(category_id):
    salva_ = 10000
 
    contador = 0
- 
+
    for offset in range(0,total_pagina + 1,qtd_por_extracao):
       print(offset)
       try:

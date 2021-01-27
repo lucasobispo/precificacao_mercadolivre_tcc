@@ -1,14 +1,24 @@
 import pandas as pd 
 import urllib.request as urllib2
+from urllib.error import HTTPError
 import json
 import boto3 as boto3
-import credentials as cr
+import aws_keys as cr
 from botocore.exceptions import NoCredentialsError
 from io import StringIO
 
 
 def chamando_api(offset,category_id):
-  r = urllib2.Request(f'https://api.mercadolibre.com/sites/MLB/search?category={category_id}&offset={offset}')
+  #GET Scroll ID --> https://developers.mercadolivre.com.br/pt_br/itens-e-buscas#Modo-de-busca-acima-de-1000-registros
+  # r = urllib2.Request(f'https://api.mercadolibre.com/sites/MLB/search?search_type=scan&category={category_id}&offset={offset}')
+  # response = urllib2.urlopen(r)
+  # elevations = response.read()
+  # data = json.loads(elevations)
+
+  url = f'https://api.mercadolibre.com/sites/MLB/search?search_type=scan&category={category_id}&offset={offset}'
+  H_ = {'Authorization': 'Bearer APP_USR-5263945428598049-012308-b52b8e7957acf5b8bbb5121ae4bbf456-169457532'}
+
+  r = urllib2.Request(url, headers=H_)
   response = urllib2.urlopen(r)
   elevations = response.read()
   data = json.loads(elevations)
