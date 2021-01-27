@@ -3,7 +3,7 @@ import urllib.request as urllib2
 from urllib.error import HTTPError
 import json
 import boto3 as boto3
-import aws_keys as cr
+import credentials as cr
 from botocore.exceptions import NoCredentialsError
 from io import StringIO
 
