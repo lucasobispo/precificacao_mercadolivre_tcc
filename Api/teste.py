@@ -26,21 +26,47 @@ from io import StringIO
 # # print("success")
 
 import os
-os.system('flask run')
+import _thread
+import time
+import httplib2
 
-# try:
-#    _thread.start_new_thread( 
-#       pega_dados_by_category, ('MLB1051',)
-#    )
-#    _thread.start_new_thread(
-#       pega_dados_by_category, ('MLB1055',)
-#    )
+# def run():
+#     time.sleep(5)
+#     r = urllib2.urlopen(urllib2.Request("http://127.0.0.1:5000/"))
+
+#     response = r.geturl()
+#     print(response)
+#     s = urllib2.urlopen((urllib2.Request(response)))
+
+#     print(s.geturl())
+
+import webbrowser
+
+  # Go to example.com    
+
+def getContentLocation(link):
+    time.sleep(5)
+    h = httplib2.Http(".cache")
+    h.follow_all_redirects = True
+    resp = h.request(link, "GET")[0]
+    contentLocation = resp['content-location']
+    return print(contentLocation)
+
+
+
+try:
+   _thread.start_new_thread(       
+        os.system, ('flask run',)
+   )
+   _thread.start_new_thread(
+        webbrowser.open, ("http://127.0.0.1:5000/",)
+   )
    
-# except:
-#    print ("Error: unable to start thread")
+except:
+   print ("Error: unable to start thread")
 
-# while 1:
-#    pass
+while 1:
+   pass
 
 
 
