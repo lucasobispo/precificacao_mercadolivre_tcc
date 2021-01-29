@@ -14,10 +14,10 @@ def pega_dados_by_category(category_id):
    total_pagina = chamando_api(0,category_id)[1]['paging']['total']
    print(total_pagina)
    qtd_por_extracao = 50
-   salva_ = 1000
+   salva_ = 10000
 
    contador = 0
- 
+
    for offset in range(0,total_pagina + 1,qtd_por_extracao):
       print(offset)
       try:
