@@ -16,7 +16,7 @@ def chamando_api(offset,category_id):
   # data = json.loads(elevations)
 
   url = f'https://api.mercadolibre.com/sites/MLB/search?search_type=scan&category={category_id}&offset={offset}'
-  H_ = {'Authorization': 'Bearer APP_USR-5263945428598049-012308-b52b8e7957acf5b8bbb5121ae4bbf456-169457532'}
+  H_ = {'Authorization': 'Bearer APP_USR-5263945428598049-020123-3a4e37bf63693fee21d714c5b9880d86-169457532'}
 
   r = urllib2.Request(url, headers=H_)
   response = urllib2.urlopen(r)

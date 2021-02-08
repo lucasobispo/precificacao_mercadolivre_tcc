@@ -1,6 +1,7 @@
 import os
 import json
 import requests as req
+from utils import *
 from flask import Flask, Response, redirect, request
 
 app = Flask(__name__)
@@ -27,21 +28,9 @@ def get_token():
     '''
         Other page
     '''
-    CODE = request.args.get('code')
-    # CODE = "TG-6010b2512f79800006ead291-169457532"
-    
+    CODE = request.args.get('code')   
 
     if CODE != '':
-        # url_template = 'https://api.mercadolibre.com/oauth/token?grant_type=authorization_code&client_id={}&client_secret={}&code={}&redirect_uri=http://localhost:5000/get_token'
-
-        # r = req.post(
-        #     url_template.format(
-        #         APP_ID,
-        #         SECRET_KEY,
-        #         token
-        #     ),
-        #     allow_redirects=False
-        # )
         url_template = 'https://api.mercadolibre.com/oauth/token'
 
         r = req.post(
@@ -59,23 +48,21 @@ def get_token():
         )
 
         new_token = r.json()['access_token']
-        credential_PATH = r"C:\Users\gabri\OneDrive\Documentos\GitHub\precificacao_mercadolivre_tcc\Api\credentials.py"
+        credential_PATH = r"C:\Users\gabri\OneDrive\Documentos\GitHub\precificacao_mercadolivre_tcc\Api\ml_credentials.txt"
 
         my_file = open(credential_PATH)
         string_list = my_file.readlines()
         my_file.close()
 
-        indice = [linha for linha, s in enumerate(string_list) if 'ML_ACCESS_TOKEN' in s][0]
-        print(indice)                
-        string_list[indice] = f"ML_ACCESS_TOKEN = \"{new_token}\""
-
+        indice = [linha for linha, s in enumerate(string_list) if 'ML_ACCESS_TOKEN' in s][0]           
+        string_list[indice] = f"ML_ACCESS_TOKEN = \"{new_token}\"\n"
+            
         my_file = open(credential_PATH, "w")
         new_file_contents = "".join(string_list)        
         my_file.write(new_file_contents)
         my_file.close()
-        
-            
 
+        upload_to_aws("ml_credentials.txt", "dados-mercadolivre", "ml_credentials.py")                
         return Response(
             json.dumps(r.json(), indent=4, sort_keys=True),
             mimetype='application/json'
