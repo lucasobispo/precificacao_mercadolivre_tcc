@@ -1,0 +1,32 @@
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: #2B00A1;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.header img {
+  margin: 0 16px;
+}
+
+.header:hover {
+  opacity: 0.8;
+}
+
+a{
+  margin-left: 10px;
+  color: white;
+  font-style:normal;
+  text-decoration: none;
+}
+
+a :hover{
+  letter-spacing: 2px;
+}

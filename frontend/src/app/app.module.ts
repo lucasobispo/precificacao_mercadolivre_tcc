@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TemplatesComponent } from './templates/templates.component';
-import { ExternalComponent } from './external/external.component';
 import { HomeComponent } from './external/home/home.component';
 import { AboutComponent } from './external/about/about.component';
 import { HeaderComponent } from './templates/header/header.component';
@@ -13,12 +10,11 @@ import { FooterComponent } from './templates/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TemplatesComponent,
-    ExternalComponent,
     HomeComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,
