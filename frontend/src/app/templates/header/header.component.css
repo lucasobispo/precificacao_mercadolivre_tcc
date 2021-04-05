@@ -10,6 +10,7 @@ header {
   color: white;
   font-weight: 600;
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .header img {
@@ -27,6 +28,6 @@ a{
   text-decoration: none;
 }
 
-a :hover{
+a:hover{
   letter-spacing: 2px;
 }

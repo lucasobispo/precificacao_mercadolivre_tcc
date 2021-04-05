@@ -6,6 +6,7 @@ import { HomeComponent } from './external/home/home.component';
 import { AboutComponent } from './external/about/about.component';
 import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
+import { DropDownListModule } from 'smart-webcomponents-angular/dropdownlist';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './templates/footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DropDownListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
