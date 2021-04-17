@@ -1,20 +1,22 @@
 header {
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 55px;
   display: flex;
   align-items: center;
-  background-color: #2B00A1;
+  background-color: black;
   color: white;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   width: 100%;
+  border-top: 12px solid black;
+  border-bottom: 4px solid white;
 }
 
 .header img {
-  margin: 0 16px;
+  margin: 0 122px;
 }
 
 .header:hover {
@@ -22,12 +24,14 @@ header {
 }
 
 a{
-  margin-left: 10px;
+  margin-left: 15px;
   color: white;
   font-style:normal;
   text-decoration: none;
+  align-items: center;
 }
 
 a:hover{
-  letter-spacing: 2px;
+  /* letter-spacing: 1px; */
+  border-bottom: 4px solid white;
 }
