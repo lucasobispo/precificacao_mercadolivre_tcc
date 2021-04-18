@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DropDownListComponent } from 'smart-webcomponents-angular/dropdownlist';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -29,7 +29,7 @@ p {
   flex: 1;
 }
 
-.card svg.material-icons path {
+/* .card svg.material-icons path {
   fill: #888;
 }
 
@@ -90,7 +90,7 @@ p {
 
 .card.card.highlight-card span {
   margin-left: 60px;
-}
+} */
 
 a,
 a:visited,

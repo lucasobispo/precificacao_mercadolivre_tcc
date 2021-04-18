@@ -1,5 +1,5 @@
 header {
-  position: absolute !important;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
@@ -8,8 +8,8 @@ header {
   align-items: center;
   background-color: black;
   color: white;
-  font-weight: 600;
-  margin-bottom: 25px;
+  /* font-weight: 600; */
+  /* margin-bottom: 25px; */
   width: 100%;
   border-top: 12px solid black;
   border-bottom: 4px solid white;
