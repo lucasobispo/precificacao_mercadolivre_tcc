@@ -8,6 +8,7 @@ import { HeaderComponent } from './templates/header/header.component';
 import { FooterComponent } from './templates/footer/footer.component';
 import { DropDownListModule } from 'smart-webcomponents-angular/dropdownlist';
 import { ModelfinderComponent } from './external/modelfinder/modelfinder.component';
+import { ResultsComponent } from './external/results/results.component';
 //import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ModelfinderComponent } from './external/modelfinder/modelfinder.compone
     HeaderComponent,
     FooterComponent,
     ModelfinderComponent,
+    ResultsComponent,
     //SwiperModule
   ],
   imports: [

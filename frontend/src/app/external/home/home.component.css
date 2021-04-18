@@ -58,15 +58,6 @@ section, .form-section{
   border-radius: 50px 50px 50px 50px;
 }
 
-
-/* .input-left{
-  border-radius: 50px 0px 0px 50px;
-}
-
-.input-right{
-  border-radius: 0px 50px 50px 0px;
-} */
-
 input{
 	background-color: #fcfcfc;
 	height: 55px;
