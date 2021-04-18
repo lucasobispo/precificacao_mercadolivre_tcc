@@ -3,35 +3,32 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 55px;
+  height: 53px;
   display: flex;
-  align-items: center;
   background-color: black;
   color: white;
-  /* font-weight: 600; */
-  /* margin-bottom: 25px; */
   width: 100%;
   border-top: 12px solid black;
-  border-bottom: 4px solid white;
+  border-bottom: 5px solid white;
+  font-weight: bold;
 }
 
-.header img {
-  margin: 0 122px;
-}
-
-.header:hover {
-  opacity: 0.8;
-}
-
-a{
-  margin-left: 15px;
+.btn{
+  margin-left: 3px;
   color: white;
   font-style:normal;
   text-decoration: none;
   align-items: center;
+  height: 25px;
+  text-align: center;
+  justify-content: start;
 }
 
 a:hover{
   /* letter-spacing: 1px; */
-  border-bottom: 4px solid white;
+  border-bottom: 5px solid white;
+}
+
+a{
+  text-decoration: none;
 }
