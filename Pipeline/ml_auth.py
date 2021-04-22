@@ -1,7 +1,8 @@
+import utils.AWSTools as aws
 import os
 import json
 import requests as req
-from utils import *
+
 from flask import Flask, Response, redirect, request
 
 app = Flask(__name__)
@@ -62,7 +63,7 @@ def get_token():
         my_file.write(new_file_contents)
         my_file.close()
 
-        upload_to_aws("ml_credentials.txt", "dados-mercadolivre", "ml_credentials.py")                
+        aws.upload_to_aws("ml_credentials.txt", "dados-mercadolivre", "ml_credentials.py")                
         return Response(
             json.dumps(r.json(), indent=4, sort_keys=True),
             mimetype='application/json'
