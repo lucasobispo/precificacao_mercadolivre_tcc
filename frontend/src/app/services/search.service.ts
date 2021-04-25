@@ -12,9 +12,13 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   corsHeaders = new HttpHeaders({
+    'Cache-Control': 'no-cache',
+    // 'Accept': '*/*',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
     'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Origin': 'http://localhost:4200',
     'Accept': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:4200'
   });
 
   search(object: any): Observable<any> {
