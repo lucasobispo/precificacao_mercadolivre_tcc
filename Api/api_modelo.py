@@ -5,8 +5,8 @@ import os
 
 app = Flask(__name__)
 
-modelo = pickle.load(open(r"C:\Users\lucab\Documents\FTT\EC\precificacao_mercadolivre_tcc\Jupyer-Notebooks\precificacao.pk1",'rb'))
-
+# modelo = pickle.load(open(r"C:\Users\lucab\Documents\FTT\EC\precificacao_mercadolivre_tcc\Jupyer-Notebooks\precificacao.pk1",'rb'))
+modelo = pickle.load(open(r"/Users/Ssilva3/Documents/GitHub/precificacao_mercadolivre_tcc/Jupyer-Notebooks/precificacao.pk1",'rb'))
 
 
 @app.route("/")

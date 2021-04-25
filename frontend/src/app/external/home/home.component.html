@@ -27,13 +27,12 @@
       <div class="form-group">
 
 
-        <!-- <input class="input" style="width:40%;" id="modelo" type="text" [(ngModel)]="modelo"
-          placeholder="Qual modelo deseja buscar?">
-        <input class="input" style="width:20%;" id="marca" type="text" [(ngModel)]="modelo" placeholder="Marca">
-        <input class="input" id="capacidade" type="number" [(ngModel)]="modelo" placeholder="Capacidade">
-        <input class="input" id="memoriaram" type="number" [(ngModel)]="memoriaram" placeholder="Memória RAM">
+        <input class="input" style="width:40%;" id="modelo" type="text" [(ngModel)]="phone.modelo" placeholder="Qual modelo deseja buscar?">
+        <input class="input" style="width:20%;" id="marca" type="text" [(ngModel)]="phone.marca" placeholder="Marca">
+        <input class="input" id="capacidade" type="number" [(ngModel)]="phone.capacidade" placeholder="Capacidade">
+        <input class="input" id="memoriaram" type="number" [(ngModel)]="phone.memoriaram" placeholder="Memória RAM">
         <br>
-        <input class="input" style="width:25%;" id="regiao" type="text" [(ngModel)]="regiao" placeholder="Região"> -->
+        <input class="input" style="width:25%;" id="regiao" type="text" [(ngModel)]="phone.regiao" placeholder="Região">
 
 
         <!-- <ng-select id='condicao' [items]="tipos" bindValue="Tipo_ID" bindLabel="tipo"
@@ -44,7 +43,7 @@
 					(change)="onTypeSelect()">
         </ng-select> -->
 
-        <!-- <select class="selectpicker" title="Categories" data-style="btn-form-control">
+        <select class="selectpicker" title="Categories" data-style="btn-form-control">
           <option value="small" placeholder="Condição">Novo</option>
           <option value="medium">Usado</option>
         </select>
@@ -52,11 +51,11 @@
           <option value="small" placeholder="Qual o motivo de venda?">Motivo Financeiro</option>
           <option value="medium">Revenda</option>
           <option value="large">Microempreendedor</option>
-        </select> -->
+        </select>
 
-        <!-- <a href="/results"><button class="btn btn-primary" (click)="onSubmit()"
-            style="width:200px">PESQUISAR</button></a> -->
-            <a href="/results"><button class="btn btn-primary" style="width:200px">PESQUISAR</button></a>
+        <button class="btn btn-primary" (click)="onSubmit()" style="width:200px">PESQUISAR</button>
+
+            <!-- <a href="/results"><button class="btn btn-primary" style="width:200px">PESQUISAR</button></a> -->
         <br>
         <p style="color: black; font-weight: bold;">Quanto mais campos preenchidos, melhor o preço que podemos
           sugerir.<br>
