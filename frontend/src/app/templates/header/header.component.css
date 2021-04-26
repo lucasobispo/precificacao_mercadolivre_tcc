@@ -1,32 +1,34 @@
 header {
-  position: absolute;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 53px;
   display: flex;
-  align-items: center;
-  background-color: #2B00A1;
+  background-color: black;
   color: white;
-  font-weight: 600;
-  margin-bottom: 15px;
+  width: 100%;
+  border-top: 12px solid black;
+  border-bottom: 5px solid white;
+  font-weight: bold;
 }
 
-.header img {
-  margin: 0 16px;
-}
-
-.header:hover {
-  opacity: 0.8;
-}
-
-a{
-  margin-left: 10px;
+.btn{
+  margin-left: 3px;
   color: white;
   font-style:normal;
   text-decoration: none;
+  align-items: center;
+  height: 25px;
+  text-align: center;
+  justify-content: start;
 }
 
-a :hover{
-  letter-spacing: 2px;
+a:hover{
+  /* letter-spacing: 1px; */
+  border-bottom: 5px solid white;
+}
+
+a{
+  text-decoration: none;
 }
