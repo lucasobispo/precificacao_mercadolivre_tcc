@@ -5,8 +5,8 @@ import os
 
 app = Flask(__name__)
 
-modelo = pickle.load(open(r"C:\Users\lucab\Documents\FTT\EC\precificacao_mercadolivre_tcc\Jupyer-Notebooks\precificacao.pk1",'rb'))
-
+# modelo = pickle.load(open(r"C:\Users\lucab\Documents\FTT\EC\precificacao_mercadolivre_tcc\Jupyer-Notebooks\precificacao.pk1",'rb'))
+modelo = pickle.load(open(r"~/precificacao.pk1",'rb'))
 
 
 @app.route("/")
@@ -26,4 +26,4 @@ def predict():
 
 if __name__ == "__main__":
     porta = int(os.environ.get("PORT", 5000))
-    app.run(host='127.0.0.1', port=porta)
+    app.run(host='0.0.0.0', port=porta)
