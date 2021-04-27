@@ -1,9 +1,7 @@
 export class Phone {
-	modelo: string;
-  marca: string;
-  capacidade: number;
-  memoriaram: number;
-  regiao: string;
-  condicao: string;
-  motivo: string;
+  memory: number;
+  ram_memory: number;
+  Marca: string;
+	Modelo: string;
+  condition: string;
 }

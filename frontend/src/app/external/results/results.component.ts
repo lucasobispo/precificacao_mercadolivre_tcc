@@ -18,9 +18,15 @@ export class ResultsComponent implements OnInit {
   result: number;
 
   ngOnInit(): void {
-    console.log(this.router.getCurrentNavigation().extras.state.result);
-    this.phone = this.router.getCurrentNavigation().extras.state.phone;
-    this.result = this.router.getCurrentNavigation().extras.state.result;
+
+    if (this.router.getCurrentNavigation()) {
+      console.log(this.router.getCurrentNavigation().extras.state.result);
+      this.phone = this.router.getCurrentNavigation().extras.state.phone;
+      this.result = this.router.getCurrentNavigation().extras.state.result;
+    }
+    else{
+      this.phone = new Phone();
+    }
   }
 
   onSubmit(): void {

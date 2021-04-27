@@ -4,7 +4,7 @@
   padding: 100px;
 }
 
-.purplebox{
+.box{
   width: 80vw;
   display: inline-block;
   align-items: center;
@@ -14,10 +14,10 @@
   background-color: #f5f5f5;
   color: black;
   margin: 10px;
-  box-shadow: 8px 8px 1px #dcdcdc;
   opacity: 0.5;
 }
 
-.purplebox:hover{
+.box:hover{
   opacity: 1.0;
+  box-shadow: 8px 8px 1px #dcdcdc;
 }

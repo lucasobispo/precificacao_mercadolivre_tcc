@@ -3,7 +3,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 53px;
+  height: 65px;
   display: flex;
   background-color: black;
   color: white;
@@ -19,7 +19,7 @@ header {
   font-style:normal;
   text-decoration: none;
   align-items: center;
-  height: 25px;
+  height: 20px;
   text-align: center;
   justify-content: start;
 }
