@@ -24,14 +24,21 @@
     <div class="form-content">
       <h1 style="color: white;">Encontre um preço para seu produto</h1><br>
       <div class="form-group">
-        <input class="input" style="width:40%;" id="Modelo" type="text" [(ngModel)]="phone.Modelo"
-          placeholder="Qual modelo deseja buscar?">
-        <input class="input" style="width:20%;" id="Marca" type="text" [(ngModel)]="phone.Marca" placeholder="Marca">
+
+        <!-- "memory": 64,
+        "ram_memory": 2,
+        "Marca": "Apple",
+        "Modelo": "iPhone 8",
+        "condition": "new" -->
+
         <input class="input" id="capacidade" type="number" [(ngModel)]="phone.memory" placeholder="Capacidade">
         <input class="input" id="memoriaram" type="number" [(ngModel)]="phone.ram_memory" placeholder="Memória RAM">
+        <input class="input" style="width:20%;" id="Marca" type="text" [(ngModel)]="phone.Marca" placeholder="Marca">
+        <input class="input" style="width:40%;" id="Modelo" type="text" [(ngModel)]="phone.Modelo" placeholder="Qual modelo deseja buscar?">
+        <input class="input" style="width:25%;" id="regiao" type="text" [(ngModel)]="phone.condition" placeholder="Condição">
+
         <br>
-        <input class="input" style="width:25%;" id="regiao" type="text" [(ngModel)]="phone.condition"
-          placeholder="Condição">
+
 
         <!-- <ng-select id='condicao' [items]="tipos" bindValue="Tipo_ID" bindLabel="tipo"
 					[virtualScroll]="true" placeholder="Selecione o Tipo" [(ngModel)]="tipoSelecionado"

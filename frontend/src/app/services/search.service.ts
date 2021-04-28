@@ -2,27 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Phone } from '../phone.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  url: string = "http://18.208.109.22:5000"; ///colocar o IP
+  url: string = "http://35.174.167.124:5000"; ///colocar o IP
+  phone: Phone;
 
   constructor(private http: HttpClient) { }
 
-  corsHeaders = new HttpHeaders({
-    'Cache-Control': 'no-cache',
-    // 'Accept': '*/*',
-    // 'Accept-Encoding': 'gzip, deflate, br',
-    // 'Connection': 'keep-alive',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Headers': 'http://18.208.109.22:5000',
-    'Accept': 'application/json',
-  });
+  // corsHeaders = new HttpHeaders({
+  //   'Cache-Control': 'no-cache',
+  //   // 'Accept': '*/*',
+  //   // 'Accept-Encoding': 'gzip, deflate, br',
+  //   // 'Connection': 'keep-alive',
+  //   'Content-Type': 'application/json',
+  //   'Access-Control-Allow-Headers': 'http://35.174.167.124:5000',
+  //   'Accept': 'application/json',
+  // });
 
-  search(object: any): Observable<any> {
-    console.log(object);
+  search(object: Phone): Observable<any> {
+    this.phone = object;
 
     var object1 = {
       "memory": 64,

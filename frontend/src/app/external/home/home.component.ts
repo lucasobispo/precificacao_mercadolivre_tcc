@@ -13,7 +13,7 @@ import { SearchService } from 'src/app/services/search.service';
 
 export class HomeComponent implements OnInit {
   @ViewChild('dropdownlist', { read: DropDownListComponent, static: false }) dropdownlist: DropDownListComponent;
-  constructor(private SearchService: SearchService, private route: Router, private NotificationServe: NotificationService) { }
+  constructor(private SearchService: SearchService, private router: Router, private NotificationServe: NotificationService) { }
 
   phone: Phone = new Phone();
 
@@ -22,11 +22,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.phone)
 
     this.SearchService.search(this.phone)
       .subscribe(ret => {
-        this.route.navigateByUrl('/results',{state:{phone:this.phone, result: ret}});
+        this.router.navigateByUrl('/results',{state:{phone:this.phone, result: ret.PRECO}});
       }, error => {
         this.NotificationServe.showError(error.message, "Erro!");
       });

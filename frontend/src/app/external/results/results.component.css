@@ -4,7 +4,7 @@ html,body, section{
 }
 
 .form-section {
-  margin-top: 65px;
+  margin-top: 76px;
   margin-left: -25px;
   width: 100%;
   position: inherit;
@@ -25,7 +25,7 @@ html,body, section{
   height: 30px;
 }
 
-.label{
+.input{
 	background-color: #fcfcfc;
 	border: 1px solid #dcdcdc;
 	padding-left: 13px;

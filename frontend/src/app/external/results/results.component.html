@@ -1,15 +1,14 @@
 <body>
 
   <div class="form-section">
-    <input class="label" style="width:20%;" type="text" name="modelo" placeholder="Qual modelo deseja buscar?">
-    <input class="label" style="width:15%;" type="text" name="marca" placeholder="Marca" id="marca">
-    <input class="label" style="width:7%;" type="number" name="memoria" placeholder="Capacidade" id="memoria">
-    <input class="label" style="width:9%;" type="number" name="memoriaram" placeholder="Memória RAM" id="memoriaram">
-    <br>
-    <input class="label" style="width:15%;" type="text" name="regiao" placeholder="Região" id="regiao">
-    <input class="label" style="width:15%;" type="text" name="condicao" placeholder="Usado" id="condicao">
-    <input class="label" style="width:15%;" type="text" name="motivo" placeholder="Revenda" id="motivo">
-    <a href="/results"><b><button class="btn" type="submit">PESQUISAR</button></b></a>
+    <input class="label" style="width:7%;" type="number" [(ngModel)]="phone.memory" placeholder="Capacidade" id="memoria">
+    <input class="label" style="width:9%;" type="number" [(ngModel)]="phone.ram_memory" placeholder="Memória RAM" id="memoriaram">
+    <input class="label" style="width:15%;" type="text" [(ngModel)]="phone.Marca" placeholder="Marca" id="marca">
+    <input class="label" style="width:20%;" type="text" [(ngModel)]="phone.Modelo" placeholder="Qual modelo deseja buscar?">
+    <input class="label" style="width:15%;" type="text" [(ngModel)]="phone.condition" placeholder="Usado" id="condicao">
+
+    <button class="btn" (click)="onSubmit()" style="width:200px">PESQUISAR</button>
+
     <p style="color: white; size: 8px;">
       Não sabe as especificações do seu celular? <a href="/modelfinder" style="color: white;">Clique aqui</a> e
       descubra!</p>
@@ -23,14 +22,14 @@
       <div class="column">
         <div class="content">
           <div class="row">
-            <h1 style="text-align: left;">{{phone.Marca}} {{phone.Modelo}} {{phone.memory}} {{phone.ram_memory}} {{phone.condition}}</h1>
+            <h1 style="text-align: left;">{{titulo}}</h1>
           </div>
           <div class="row">
             <h3>Com base em nossos dados, nossa sugestão de preço é</h3>
           </div>
           <div class="row">
             <div class="purplebox">
-              <p><label>{{result}}</label></p>
+              <p><label>{{result | currency: 'BRL':'symbol':'4.2-2'}}</label></p>
             </div>
           </div>
         </div>
