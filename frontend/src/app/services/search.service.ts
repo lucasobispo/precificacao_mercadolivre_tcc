@@ -8,7 +8,7 @@ import { Phone } from '../phone.model';
   providedIn: 'root'
 })
 export class SearchService {
-  url: string = "http://35.174.167.124:5000"; ///colocar o IP
+  url: string = "http://3.227.36.209:5000"; ///colocar o IP
   phone: Phone;
 
   constructor(private http: HttpClient) { }
