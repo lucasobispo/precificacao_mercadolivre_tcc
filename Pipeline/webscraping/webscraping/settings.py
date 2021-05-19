@@ -50,9 +50,10 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'webscraping.middlewares.WebscrapingDownloaderMiddleware': 543,
-#}
+# DOWNLOADER_MIDDLEWARES = {
+#    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+#     'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -86,3 +87,11 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# ROTATING_PROXY_LIST = [
+#     'proxy1.com:8000',
+#     'proxy2.com:8031',
+#     # ...
+# ]
+
+# ROTATING_PROXY_LIST_PATH = r'C:\Users\gabri\OneDrive\Documentos\GitHub\precificacao_mercadolivre_tcc\Pipeline\webscraping\webscraping\proxy_list.txt'

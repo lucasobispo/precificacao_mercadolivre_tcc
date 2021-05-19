@@ -1,8 +1,8 @@
-import utils.AWSTools as aws
 import os
 import json
 import requests as req
-
+import pandas as pd
+from Pipeline.utils import AWSTools as aws
 from flask import Flask, Response, redirect, request
 
 app = Flask(__name__)
@@ -49,7 +49,7 @@ def get_token():
         )
 
         new_token = r.json()['access_token']
-        credential_PATH = r"C:\Users\gabri\OneDrive\Documentos\GitHub\precificacao_mercadolivre_tcc\Api\ml_credentials.txt"
+        credential_PATH = r"C:\Users\gabri\OneDrive\Documentos\GitHub\precificacao_mercadolivre_tcc\Pipeline\ml_credentials.txt"
 
         my_file = open(credential_PATH)
         string_list = my_file.readlines()
