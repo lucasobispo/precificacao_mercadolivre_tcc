@@ -8,7 +8,8 @@ import { Phone } from '../phone.model';
   providedIn: 'root'
 })
 export class SearchService {
-  url: string = "http://3.227.36.209:5000"; ///colocar o IP
+  // url: string = "http://3.227.36.209:5000"; ///IP da nuvem
+  url: string = "http://127.0.0.1:5000"; //IP Local
   phone: Phone;
 
   constructor(private http: HttpClient) { }
@@ -26,13 +27,13 @@ export class SearchService {
   search(object: Phone): Observable<any> {
     this.phone = object;
 
-    var object1 = {
-      "memory": 64,
-      "ram_memory": 2,
-      "Marca": "Apple",
-      "Modelo": "iPhone 8",
-      "condition": "new"
-    }
+    // var object1 = {
+    //   "memory": 64,
+    //   "ram_memory": 2,
+    //   "Marca": "Apple",
+    //   "Modelo": "iPhone 8",
+    //   "condition": "new"
+    // }
 
     return this.http.post(this.url + '/predict', object)
       .pipe(
