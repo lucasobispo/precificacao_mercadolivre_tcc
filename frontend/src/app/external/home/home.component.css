@@ -3,17 +3,19 @@ html,body, section{
   left: 0;
 }
 
+/* form section */
+
 section, .form-section{
   margin: auto;
   padding: 6%;
   margin-left: -30px;
-  height: 30vh;
+  height: 260px;
   align-items: center;
   vertical-align: middle;
 }
 
 .form-section{
-  margin-top: 65px;
+  margin-top: 77px;
   position: relative;
   margin-bottom: 10%;
 }
@@ -26,24 +28,32 @@ section, .form-section{
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.5;
-  background-image: url('https://images.unsplash.com/photo-1598965402089-897ce52e8355?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1493&q=80');
+  opacity: 0.8;
+  background-color: #2B00A1;
+  /* background-image: url('https://images.unsplash.com/photo-1598965402089-897ce52e8355?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1493&q=80');
   background-repeat: no-repeat;
   background-position: 50% 0;
-  background-size: cover;
-  margin-bottom: 40px;
+  background-size: cover; */
+  margin-bottom: 10%;
 }
 
 .form-content {
+  margin-top: -3%;
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 8%;
 }
 
 .form-group{
+  margin: 1px;
   align-content: center;
   align-items: center;
   justify-items: center;
   text-align: center;
+}
+
+.example-form{
+  display: flex;
+  height: auto;
 }
 
 .selectpicker, .input, .btn{
@@ -51,27 +61,54 @@ section, .form-section{
   color: #1f1f22;
   border: #dcdcdc 1px solid;
   box-shadow: none;
-  box-shadow: 1px 1px 1px #aaaaaa;
   height: 50px;
   margin: 5px;
-  margin-bottom: 20px;
-  border-radius: 50px 50px 50px 50px;
+  margin-bottom: 2.5vh;
+  /* border-radius: 50px 50px 50px 50px; */
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-label, .mat-form-field, .ngx-mat-select-search {
+  font-size: 13px;
+  color: #1f1f22;
+  background-color: white;
+  height: 48px;
+  margin-left: 16px;
+  margin-bottom: 10px;
+}
+
+.mat-select{
+  font-size: 14px;
 }
 
 input{
-	background-color: #fcfcfc;
+	background-color: #f5f5f5;
 	height: 55px;
 	border: 1px solid #dcdcdc;
 	padding-left: 13px;
 	color: #8E8E8E;
+  margin-top: -120px;
+  border-bottom: 2px solid #f5f5f5;
 }
 
+input:hover{
+  border-bottom: 2px solid black;
+}
 
 .btn{
   padding: 1%;
-  height: 60px;
+  height: 6vh;
   width: 180px;
-  background-color: #2B00A1;
+  background-color: black;
   color: white;
   border: none;
   font-style: bold;
@@ -101,6 +138,16 @@ smart-drop-down-list {
 	width: 300px;
 }
 
+mat-label {
+  color: #000;
+  font-size: 16px;
+}
+
+
+/* fim do form section */
+
+/* sessão 2: o que é o quanto vale? */
+
 .container {
   display: grid;
   grid-template-columns: 300px 0px 100px;
@@ -112,46 +159,66 @@ smart-drop-down-list {
   margin-top: 200px;
 }
 
-.purplebox{
-  width: 30vw;
+.box1{
+  width: 40vw;
   height: auto;
-  background-color: #2B00A1;
-  color: white;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.699);
   padding: 13%;
-  margin-right: 10px;
-  box-shadow: 8px 8px 1px #aaaaaa;
-  font-family: 'Proxima Nova', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 21px;
+  margin-left: -10px;
+  /* box-shadow: 8px 8px 1px #aaaaaa; */
+  font-size: 24px;
+  line-height: normal;
 }
 
-.section {
-  margin-bottom: 25px;
-  margin-left: -30px;
-  padding: 40px;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  height:fit-content;
+/* fim da sessão 2: o que é o quanto vale? */
+
+/* sessão 3: como funciona? */
+
+.container2 {
+  display: inline block;
+  width: auto;
+  text-align: center;
+  align-items: center;
+  margin-top: 0px;
+  padding: 7%;
+  text-align: left;
+}
+
+.column { /* Three image containers (use 25% for four, and 50% for two, etc) */
+  float: left;
+  width: 27%;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin: 1px;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.row::after { /* Clear floats after image containers */
+  content: "";
+  clear: both;
+  display: table;
+  vertical-align: middle;
 }
 
 .circle{
   font-size: 56px;
   background-color: #2B00A1;
   color: white;
-  padding: 2px;
-  margin-left: 110px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 35px;
+  /* margin-left: 110px; */
+  padding-left: 30px;
+  padding-right: 30px;
   width: fit-content;
   border-radius: 50px 50px 50px 50px;
   text-shadow: 1px 1px 3px #312e2e;
-}
-
-.invisiblebox{
-  padding: 20px;
-  width: 23vw;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: -20px;
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 
 h1{

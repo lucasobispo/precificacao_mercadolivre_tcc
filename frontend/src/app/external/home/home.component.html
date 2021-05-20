@@ -21,94 +21,238 @@
   <div class="container py-6 py-md-7 text-white z-index-20" width="100%">
     <p>Teste </p>
   </div> -->
-
     <div class="form-content">
-      <h1>Encontre um preço para seu produto</h1><br>
-      <!-- botões de pesquisa, precisa setar os objetos com o back -->
+      <h1 style="color: white;">Encontre um preço para seu produto</h1><br>
+
+      <!--
+      OKcapacidades = [12,24,48,64,128];
+      OKmemorias_ram = [2,3,4,6,8,10,12];
+      OKsims = [1,2];
+      OKanos= [2017,2018,2019,2020,2021];
+      OKconditions = ['new', 'used'];
+      OKmarcas = ['Apple', 'Motorola', 'Samsung', 'Xiaomi'];
+      OKlinhas -->
+      <!--
+      OK[(ngModel)]="phone.memoria_interna: number;
+      OK[(ngModel)]="phone.memoria_ram: number;
+      OK[(ngModel)]="phone.quantidade_sims: number;
+      OK[(ngModel)]="phone.ano_lancamento: number;
+      OK[(ngModel)]="phone.marca_renomeado_upper: string;
+      OK[(ngModel)]="phone.condition: string;
+      OK[(ngModel)]="phone.Linha: string;
+      OK[(ngModel)]="phone.Marca: string; -->
+
       <div class="form-group">
-        <input class="input" style="width:40%;" type="text" name="modelo" placeholder="Qual modelo deseja buscar?">
-        <input class="input" style="width:20%;" type="text" name="marca" placeholder="Marca" id="marca">
-        <input class="input" type="number" name="memoria" placeholder="Capacidade" id="memoria">
-        <input class="input" type="number" name="memoriaram" placeholder="Memória RAM" id="memoriaram">
+        <!-- linha 1 do formulario -->
+        <div class="row">
+          <!-- dropdown marca -->
+          <mat-form-field appearance="fill" style="width:15%;">
+            <mat-label>Marca</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let marca of marcas" [value]="marca" [(ngModel)]="phone.Marca" ngDefaultControl>
+                {{marca}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- dropdown linha -->
+          <mat-form-field appearance="fill" style="width: 10%;">
+            <mat-label>Linha</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let linha of linhas" [value]="linha" [(ngModel)]="phone.Linha" ngDefaultControl>
+                {{linha}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="fill" style="width: 30%;">
+            <mat-label>Modelo</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let modelo of modelos" [value]="modelo" ngDefaultControl>
+                {{modelo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+          <!-- autocomplete modelo -->
+          <!-- <mat-form-field style="width: 35%;
+          background-color: white;
+          font-size: 16px;
+          padding-top: 4px;
+          padding-left: 3px;
+          color: #1f1f22;
+          height: 40px;
+          margin-left: 16px;
+          margin-bottom: 10px;"> -->
+          <mat-form-field appearance="fill" style="width: 30%;">
+            <!-- <mat-select [formControl]="bankCtrl" placeholder="Qual modelo deseja buscar?" style=
+            "background-color: white;
+            font-size: 16px;
+            margin-top: -5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            margin-left: 6px;
+            width: 97%;" #singleSelect> -->
+            <mat-select [formControl]="bankCtrl" placeholder="Qual modelo deseja buscar?" style="font-size: 16px;" #singleSelect>
+              <mat-option>
+                <ngx-mat-select-search noEntriesFoundLabel="Não Encontrado" placeholderLabel="Modelo"
+                  [formControl]="bankFilterCtrl"></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let modelo of modelosFiltrados | async" [value]="modelo"
+                [(ngModel)]="phone.marca_renomeado_upper" ngDefaultControl>
+                {{modelo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- linha 2 do formulario -->
+        <div class="row">
+          <!-- memoria ram -->
+          <mat-form-field appearance="fill" style="width: 11%;">
+            <mat-label>Memória RAM</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let memoria_ram of memorias_ram_foto" [value]="memoria_ram" [(ngModel)]="phone.memoria_ram"
+                ngDefaultControl>
+                {{memoria_ram}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- capacidade -->
+          <mat-form-field appearance="fill" style="width: 13%;">
+            <mat-label>Memoria Interna</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let capacidade of capacidades_foto" [value]="capacidade"
+                [(ngModel)]="phone.memoria_interna" ngDefaultControl>
+                {{capacidade}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- ano de lançamento -->
+          <mat-form-field appearance="fill" style="width: 14%;">
+            <mat-label>Ano de Lançamento</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let ano of anos" [value]="ano" [(ngModel)]="phone.ano_lancamento" ngDefaultControl>
+                {{ano}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- quantidade de sims -->
+          <mat-form-field appearance="fill" style="width: 14%;">
+            <mat-label>Quantidade de Sims</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let sim of sims" [value]="sim" [(ngModel)]="phone.quantidade_sims" ngDefaultControl>
+                {{sim}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- condição -->
+          <mat-form-field appearance="fill" style="width: 9%;">
+            <mat-label>Condição</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let condition of conditions_foto" [value]="condition" [(ngModel)]="phone.condition" ngDefaultControl>
+                {{condition}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
+        <!-- add qtde de sims (chips) -->
+        <!-- <input class="input" style="width:7%;" id="capacidade" type="number" [(ngModel)]="phone.memory"
+            placeholder="Capacidade" name="memory">
+          <input class="input" style="width:7%;" id="memoriaram" type="number" [(ngModel)]="phone.ram_memory"
+            placeholder="Memória RAM" name="ram_memory">
+          <input class="input" style="width:20%;" id="Marca" type="text" [(ngModel)]="phone.Marca" placeholder="Marca" name="Marca">
+          <input class="input" style="width:25%;" id="Modelo" type="text" [(ngModel)]="phone.Modelo"
+            placeholder="Qual modelo deseja buscar?" name="Modelo">
+          <input class="input" style="width:15%;" id="condicao" type="text" [(ngModel)]="phone.condition"
+            placeholder="Condição" name="condition"> -->
+
         <br>
-        <input class="input" style="width:25%;" type="text" name="regiao" placeholder="Região" id="regiao">
-        <select class="selectpicker" title="Categories" data-style="btn-form-control">
-          <option value="small" placeholder="Condição">Novo</option>
-          <option value="medium">Usado</option>
-          <!-- <option value="large">Microempreendedor</option> -->
-          <!-- <option value="x-large">Garages</option> -->
-        </select>
-        <select class="selectpicker" title="Categories" data-style="btn-form-control">
-          <option value="small" placeholder="Qual o motivo de venda?">Motivo Financeiro</option>
-          <option value="medium">Revenda</option>
-          <option value="large">Microempreendedor</option>
-          <!-- <option value="x-large">Garages</option> -->
-        </select>
-        <a href="/modelfinder"><b><button class="btn" type="submit">PESQUISAR</button></b></a>
-        <br>
-        <p style="color: black; font-weight: bold;">Quanto mais campos preenchidos, melhor o preço que podemos sugerir.<br>
-          Não sabe as especificações do seu celular? <a href="/results">Clique aqui</a> e descubra!</p><br>
+        <div class="row">
+        <!-- <button class="btn btn-primary" (click)="onSubmit()" style="width:200px">PESQUISAR</button> -->
+        <button class="btn btn-primary" style="width:200px">PESQUISAR</button>
+      </div>
+
+        <div class="row">
+          <h3 style="color: white;">Quanto mais campos preenchidos, melhor o preço que podemos
+            sugerir.<br>
+            Não sabe as especificações do seu celular? <a href="/modelfinder" style="color: white;">Clique aqui</a> e
+            descubra!</h3>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- <div class="section" style="height:45%"> -->
-  <div class="container">
-    <div class="item item-1">
-      <div class="purplebox">
-        <h1>O que é o Quanto Vale?</h1>
-        <p>O Quanto Vale é uma aplicação que busca precificar o seu produtos eletrônico, para que ele possa ser vendido
-          em diferentes plataformas de vendas,
-          por um preço justo e adequado à sua concorrência, mantendo a qualidade e o valor que condiz com o mercado.
-        </p>
+    <div class="container">
+      <div class="item item-2">
+        <img src="/assets/imgs/icons/quanto vale_.png" width="300px" style="margin-left: -2vw;">
+      </div>
+      <div class="item item-1" style="margin-left: -15vw;">
+        <div class="box1">
+          <h1>O que é o <b>Quanto Vale</b>?</h1>
+          <p>O Quanto Vale é uma aplicação que busca precificar o seu produtos eletrônico, para que ele possa ser
+            vendido
+            em diferentes plataformas de vendas,
+            por um preço justo e adequado à sua concorrência, mantendo a qualidade e o valor que condiz com o mercado.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="item item-2">
-      <img src="/assets/imgs/icons/quanto vale_.png" width="260px" style="margin-left: 80px;">
-    </div>
-  </div>
-  <!-- </div> -->
 
-  <div class="section" style="margin-top: 20px;">
-    <h1>Como funciona?</h1><br>
-    <table>
-      <tr>
-        <th>
-          <div class="circle" style="opacity: 0.8;">1</div>
-        </th>
-        <th>
+    <div class="container2">
+      <div class="row">
+        <h1>Como funciona?</h1><br>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="circle" style="opacity: 0.4;">1</div>
+        </div>
+        <div class="column">
           <div class="circle" style="opacity: 0.6;">2</div>
-        </th>
-        <th>
-          <div class="circle" style="opacity: 0.4;">3</div>
-        </th>
-      </tr>
-      <tr>
-        <td>
-          <div class="invisiblebox">
-            <h2>Começa com você</h2>
+        </div>
+        <div class="column">
+          <div class="circle" style="opacity: 0.8;">3</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <h2>Começa com você</h2>
+        </div>
+        <div class="column">
+          <h2>Inteligência Artificial</h2>
+        </div>
+        <div class="column">
+          <h2>Dados Calibrados</h2>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:-10px">
+        <div class="column">
+          <p>
             Primeiro, você fornece as informações do seu eletrônico. Quanto mais dados você fornecer, melhor será o
             preço
-            sugerido, porque o cálculo do valor predito leva em consideração todas as variáveis disponíveis.
-          </div>
-        </td>
-        <td>
-          <div class="invisiblebox">
-            <h2>Inteligência Artificial</h2>
+            sugerido, porque o cálculo do valor predito leva em consideração todas as variáveis disponíveis.</p>
+        </div>
+        <div class="column">
+          <p>
             Nós utilizamos os dados que você inseriu e fazemos o cálculo do preço predito, com a ajuda de algoritmos de
             inteligência artificial,
-            é realizada a <b>análise preditiva</b>, que inclui técnicas como regressão logística.
-          </div>
-        </td>
-        <td>
-          <div class="invisiblebox">
-            <h2>Dados Calibrados</h2>
+            é realizada a <b>análise preditiva</b>, que inclui técnicas como regressão logística.</p>
+        </div>
+        <div class="column">
+          <p>
             Para a criação do nosso modelo de precificação, são utilizados uma grande quantidade de dados
-            públicos do maior e-commerce do Brasil, o <b>Mercado Livre</b>.
-          </div>
-        </td>
-      </tr>
-    </table>
+            públicos do maior e-commerce do Brasil, o <b>Mercado Livre</b>.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
 </body>
