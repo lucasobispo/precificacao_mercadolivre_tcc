@@ -39,14 +39,14 @@ class MySpider(scrapy.Spider):
 
     df_atributes_part = pd.DataFrame()
     
-    tamanho = 1000   
+    tamanho = 0   
 
     def start_requests(self):
 
         # base_links = AWSTools.pd_read_s3_parquet("20210422/dados-teste-links20210422.parquet","dados-transformados-mercadolivre")
         # base_links = AWSTools.fromCSVS3("dados-transformados-mercadolivre", "20210507/links_filtrados.csv")
         print("Base de links...")
-        base_links = pd.read_csv(r"C:\Users\gabri\Downloads\data.csv")
+        base_links = pd.read_csv(r"C:\Users\gabri\Downloads\dados-limpos-extrair-20052021.csv")
 
         # time.sleep(300)
 
