@@ -51,7 +51,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
     SearchService,

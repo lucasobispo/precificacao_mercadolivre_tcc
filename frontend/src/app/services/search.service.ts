@@ -8,10 +8,9 @@ import { Phone } from '../phone.model';
   providedIn: 'root'
 })
 export class SearchService {
-  // url: string = "http://3.227.36.209:5000"; ///IP da nuvem
-  url: string = "http://127.0.0.1:5000"; //IP Local
+  url: string = "http://3.227.36.209:5000"; ///IP da nuvem
+  // url: string = "http://127.0.0.1:5000"; //IP Local
   phone: Phone;
-
   constructor(private http: HttpClient) { }
 
   // corsHeaders = new HttpHeaders({
@@ -26,6 +25,19 @@ export class SearchService {
 
   search(object: Phone): Observable<any> {
     this.phone = object;
+    var object1 = {
+    "modelo_do_processador_y": this.phone.modelo_do_processador_y,
+    "com_leitor_de_impressao_digital": this.phone.com_leitor_de_impressao_digital,
+    "modelo_renomeado_upper": this.phone.modelo_renomeado_upper,
+    "condition": this.phone.condition,
+    "com_nfc": this.phone.com_nfc,
+    "Linha": this.phone.Linha,
+    "Marca": this.phone.Marca,
+    "memoria_interna": this.phone.memoria_interna,
+    "memoria_ram": this.phone.memoria_ram
+    }
+
+    console.log(object1);
 
     // var object1 = {
     //   "memory": 64,
@@ -35,7 +47,7 @@ export class SearchService {
     //   "condition": "new"
     // }
 
-    return this.http.post(this.url + '/predict', object)
+    return this.http.post(this.url + '/predict', object1)
       .pipe(
         catchError(this.handleError)
       );
