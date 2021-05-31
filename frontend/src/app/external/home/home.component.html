@@ -10,9 +10,10 @@
         <!-- linha 1 do formulario -->
         <div class="row">
           <!-- dropdown marca -->
+          <div class="circle2">1</div>
           <mat-form-field appearance="fill" style="width:200px;">
             <mat-label>Marca</mat-label>
-            <mat-select (ngModelChange)="metodo($event)" [(ngModel)]="phone.Marca" ngDefaultControl>
+            <mat-select (ngModelChange)="filtro_para_linha($event)" [(ngModel)]="phone.Marca" ngDefaultControl>
               <mat-option *ngFor="let marca of marcas" [value]="marca">
                 {{marca}}
               </mat-option>
@@ -20,45 +21,30 @@
           </mat-form-field>
 
           <!-- dropdown linha -->
+          <div class="circle2">2</div>
           <mat-form-field appearance="fill" style="width: 150px;">
             <mat-label>Linha</mat-label>
-            <mat-select [(ngModel)]="phone.Linha" ngDefaultControl>
-              <mat-option *ngFor="let linha of dicionario_filtrado" [value]="linha.linhat">
+            <mat-select (ngModelChange)="filtro_para_modelo($event)" [(ngModel)]="phone.Linha" ngDefaultControl>
+              <mat-option *ngFor="let linha of dicfiltrado_linhas" [value]="linha.linhat">
                 {{linha.linhat}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-          <!-- <mat-form-field appearance="fill" style="width: 30%;">
+          <!-- autocomplete modelo -->
+          <div class="circle2">3</div>
+          <mat-form-field appearance="fill" style="width: 350px;">
             <mat-label>Modelo</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let modelo of modelos" [value]="modelo" ngDefaultControl>
-                {{modelo}}
+            <mat-select (ngModelChange)="filtro_para_processador($event)" [(ngModel)]="phone.modelo" ngDefaultControl>
+              <mat-option *ngFor="let modelo of dicfiltrado_modelos" [value]="modelo.modelot">
+                {{modelo.modelot}}
               </mat-option>
             </mat-select>
-          </mat-form-field> -->
+          </mat-form-field>
 
-          <!-- autocomplete modelo -->
-          <!-- <mat-form-field style="width: 35%;
-          background-color: white;
-          font-size: 16px;
-          padding-top: 4px;
-          padding-left: 3px;
-          color: #1f1f22;
-          height: 40px;
-          margin-left: 16px;
-          margin-bottom: 10px;"> -->
-          <mat-form-field appearance="fill" style="width: 400px;">
-            <!-- <mat-select [formControl]="bankCtrl" placeholder="Qual modelo deseja buscar?" style=
-            "background-color: white;
-            font-size: 16px;
-            margin-top: -5px;
-            padding-top: 3px;
-            padding-bottom: 3px;
-            margin-left: 6px;
-            width: 97%;" #singleSelect> -->
-            <mat-select [formControl]="bankCtrl" placeholder="Qual modelo deseja buscar?" style="font-size: 15px;"
-              #singleSelect [(ngModel)]="phone.modelo_renomeado_upper" ngDefaultControl>
+          <!-- <mat-form-field appearance="fill" style="width: 400px;">
+            <mat-select (ngModelChange)="filtro_para_processador($event)" [formControl]="bankCtrl" placeholder="Qual modelo deseja buscar?" style="font-size: 15px;"
+              #singleSelect [(ngModel)]="phone.modelo" ngDefaultControl>
               <mat-option>
                 <ngx-mat-select-search noEntriesFoundLabel="Não Encontrado" placeholderLabel="Modelo"
                   [formControl]="bankFilterCtrl"></ngx-mat-select-search>
@@ -67,13 +53,14 @@
                 {{modelo.modelot}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field>-->
 
           <!-- modelo do processador -->
+          <div class="circle2">4</div>
           <mat-form-field appearance="fill" style="width: 230px;">
             <mat-label>Modelo do Processador</mat-label>
             <mat-select [(ngModel)]="phone.modelo_do_processador_y" ngDefaultControl>
-              <mat-option *ngFor="let modelo_processador of dicionario_filtrado"
+              <mat-option *ngFor="let modelo_processador of dicfiltrado_processador"
                 [value]="modelo_processador.processadort">
                 {{modelo_processador.processadort}}
               </mat-option>
@@ -84,6 +71,7 @@
         <!-- linha 2 do formulario -->
         <div class="row">
           <!-- memoria ram -->
+          <div class="circle2">5</div>
           <mat-form-field appearance="fill" style="width: 150px;">
             <mat-label>Memória RAM</mat-label>
             <mat-select [(ngModel)]="phone.memoria_ram" ngDefaultControl>
@@ -94,6 +82,7 @@
           </mat-form-field>
 
           <!-- capacidade -->
+          <div class="circle2">6</div>
           <mat-form-field appearance="fill" style="width: 160px;">
             <mat-label>Memoria Interna</mat-label>
             <mat-select [(ngModel)]="phone.memoria_interna" ngDefaultControl>
@@ -104,30 +93,33 @@
           </mat-form-field>
 
           <!-- possui nfc -->
+          <div class="circle2">7</div>
           <mat-form-field appearance="fill" style="width: 140px;">
             <mat-label>Possui NFC?</mat-label>
             <mat-select [(ngModel)]="phone.com_nfc" ngDefaultControl>
-              <mat-option *ngFor="let opcao of opcoes" [value]="opcao.id">
+              <mat-option *ngFor="let opcao of opcoes" [value]="opcao">
                 {{opcao.value}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <!-- leitor de impressao -->
+          <div class="circle2">8</div>
           <mat-form-field appearance="fill" style="width: 290px;">
             <mat-label>Possui leitor de impressão digital?</mat-label>
             <mat-select [(ngModel)]="phone.com_leitor_de_impressao_digital" ngDefaultControl>
-              <mat-option *ngFor="let opcao of opcoes" [value]="opcao.id">
+              <mat-option *ngFor="let opcao of opcoes" [value]="opcao">
                 {{opcao.value}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <!-- condição -->
+          <div class="circle2">9</div>
           <mat-form-field appearance="fill" style="width: 120px">
             <mat-label>Condição</mat-label>
             <mat-select id="condition" name="condition" [(ngModel)]="phone.condition" ngDefaultControl>
-              <mat-option *ngFor="let condition of conditions" [value]="condition.id">
+              <mat-option *ngFor="let condition of conditions" [value]="condition">
                 {{condition.value}}
               </mat-option>
             </mat-select>
@@ -148,7 +140,7 @@
 
         <br>
         <div class="row">
-          <button class="btn btn-primary" (click)="onSubmit()" style="width:200px">PESQUISAR</button>
+          <button class="btn btn-primary" (click)="onSubmit()" style="width:280px; margin-top: -20px">PESQUISAR</button>
           <!-- <button class="btn btn-primary" style="width:200px"><a href="/results" style="color: white;">PESQUISAR</a></button> -->
         </div>
 

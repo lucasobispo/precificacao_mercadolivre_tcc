@@ -11,13 +11,16 @@ import { SearchService } from 'src/app/services/search.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
 
+// @Pipe({
+//   name: 'unique',
+//   pure: false
+// })
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-
 
 
 export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -30,58 +33,95 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
   result: number;
   titulo: string;
 
-  memorias_ram = [{id:2,value:'2GB'}, {id:3,value: '3GB'},{id:4,value: '4GB'},{id:6,value: '6GB'},{id:8,value: '8GB'}];
-  capacidades = [{id:12,value:'12GB'}, {id:24,value: '24GB'},{id:48,value: '48GB'},{id:64,value: '64GB'},{id:128,value: '128GB'}];
-  conditions = [{id:1,value:'Novo'}, {id:0,value: 'Usado'}];
-  opcoes = [{id:1,value:'Sim'}, {id:0,value: 'Não'}];
+  memorias_ram = [{ id: 2, value: '2GB' }, { id: 3, value: '3GB' }, { id: 4, value: '4GB' }, { id: 6, value: '6GB' }, { id: 8, value: '8GB' }];
+  capacidades = [{ id: 12, value: '12GB' }, { id: 24, value: '24GB' }, { id: 48, value: '48GB' }, { id: 64, value: '64GB' }, { id: 128, value: '128GB' }];
+  conditions = [{ id: 1, value: 'Novo' }, { id: 0, value: 'Usado' }];
+  opcoes = [{ id: 1, value: 'Sim' }, { id: 0, value: 'Não' }];
   marcas = ['Apple', 'Motorola', 'Samsung', 'Xiaomi'];
-  dicionario_completo = [{marcat:'Apple',modelot:'IPHONE 11',linhat:'iPhone',processadort:'A13 Bionic com Neural Engine de terceira gerac...'},{marcat:'Apple',modelot:'IPHONE 11',
-  linhat:'iPhone',processadort:'Apple A12 Bionic'},{marcat:'Apple',modelot:'IPHONE 11',linhat:'iPhone',processadort:'Apple A13 Bionic'},{marcat:'Apple',modelot:'IPHONE 7',linhat:'iPhone',processadort:'Apple A10 Fusion'},{marcat:'Apple',modelot:'IPHONE 8',linhat:'iPhone',processadort:'Apple A11 Bionic'},{marcat:'Xiaomi',modelot:'REDMI NOTE 8',linhat:'Redmi',processadort:'Snapdragon 665'},{marcat:'Xiaomi',modelot:'REDMI NOTE 9',linhat:'Redmi',processadort:'MediaTek Helio G85'},{marcat:'Apple',modelot:'IPHONE 6S',linhat:'iPhone',
-  processadort:'Apple A9'},{marcat:'Xiaomi',modelot:'REDMI NOTE 10',linhat:'Redmi',processadort:'Snapdragon 678'},{marcat:'Apple',modelot:'IPHONE 8 PLUS',linhat:'iPhone',processadort:'Apple A11 Bionic'},{marcat:'Apple',modelot:'IPHONE 7 PLUS',linhat:'iPhone',processadort:'Apple A10 Fusion'},{marcat:'Apple',modelot:'IPHONE XR',linhat:'iPhone',processadort:'Apple A12 Bionic'},{marcat:'Apple',modelot:'IPHONE X',linhat:'iPhone',processadort:'Apple A11 Bionic'},{marcat:'Apple',modelot:'IPHONE 11',linhat:'iPhone',processadort:'Apple A13 Bionic'},{marcat:'Xiaomi',modelot:'REDMI NOTE 9S',linhat:'Redmi',processadort:'Snapdragon 720G'},{marcat:'Apple',modelot:'IPHONE 6',linhat:'iPhone',processadort:'Apple A8'},{marcat:'Xiaomi',modelot:'REDMI 9A',linhat:'Redmi',processadort:'MediaTek Helio G25'},{marcat:'Xiaomi',modelot:'REDMI 9',linhat:'Redmi',processadort:'MediaTek Helio G80'},{marcat:'Xiaomi',modelot:'REDMI NOTE 8 PRO',linhat:'Redmi',processadort:'MediaTek Helio G90T'},{marcat:'Apple',modelot:'IPHONE 5S',linhat:'iPhone',processadort:'Apple A7'},{marcat:'Apple',modelot:'IPHONE SE',linhat:'iPhone',
-  processadort:'Apple A9'},{marcat:'Apple',modelot:'IPHONE XS',linhat:'iPhone',processadort:'Apple A12 Bionic'},{marcat:'Samsung',modelot:'GALAXY A10S',linhat:'Galaxy A',processadort:'MediaTek MT6762 Helio P22'},{marcat:'Apple',modelot:'IPHONE XS MAX',linhat:'iPhone',processadort:'Apple A12 Bionic'},{marcat:'Samsung',modelot:'GALAXY A01',linhat:'Galaxy A',processadort:'Snapdragon 439'},{marcat:'Apple',modelot:'IPHONE 11 PRO MAX',linhat:'iPhone',processadort:'Apple A13 Bionic'},{marcat:'Xiaomi',modelot:'REDMI 9C',linhat:'Redmi',processadort:'MediaTek Helio G35'},{marcat:'Xiaomi',modelot:'REDMI 9T',linhat:'Redmi',processadort:'Snapdragon 662'},{marcat:'Apple',modelot:'IPHONE 6S PLUS',linhat:'iPhone',
-  processadort:'Apple A9'},{marcat:'Xiaomi',modelot:'MI 9',linhat:'Mi',processadort:'Snapdragon 855'},{marcat:'Motorola',modelot:'MOTO G5S',linhat:'Moto G',processadort:'Snapdragon 430'},{marcat:'Samsung',modelot:'GALAXY A01',linhat:'Galaxy A',processadort:'Mediatek MT6739'},{marcat:'Motorola',modelot:'MOTO G8 PLAY',linhat:'Moto G',processadort:'MediaTek MT6771 Helio P70M'},{marcat:'Xiaomi',modelot:'REDMI NOTE 7',linhat:'Redmi',processadort:'Snapdragon 660'},{marcat:'Samsung',modelot:'GALAXY A51',linhat:'Galaxy A',processadort:'Exynos 9611'},{marcat:'Xiaomi',modelot:'REDMI 8A',linhat:'Redmi',processadort:'Snapdragon 439'},{marcat:'Apple',modelot:'IPHONE 11 PRO',linhat:'iPhone',processadort:'Apple A13 Bionic'},{marcat:'Motorola',modelot:'MOTO G7 PLAY',linhat:'Moto G',processadort:'Snapdragon 632'},{marcat:'Samsung',modelot:'GALAXY A11',linhat:'Galaxy A',processadort:'Snapdragon 450'},{marcat:'Motorola',modelot:'MOTO E 6S',linhat:'Moto E',processadort:'MediaTek MT6762 Helio P22'},{marcat:'Xiaomi',modelot:'MI 9T',linhat:'Mi',processadort:'Snapdragon 730'},
-  {marcat:'Samsung',modelot:'GALAXY A71',linhat:'Galaxy A',processadort:'Snapdragon 730'},{marcat:'Samsung',modelot:'GALAXY A21S',linhat:'Galaxy A',processadort:'Exynos 850'},{marcat:'Xiaomi',modelot:'MI A3',linhat:'Mi',processadort:'Snapdragon 665'},{marcat:'Samsung',modelot:'GALAXY A31',linhat:'Galaxy A',processadort:'MediaTek MT6768 Helio P65'},{marcat:'Apple',modelot:'IPHONE 6S PLUS',linhat:'iPhone',processadort:'Apple A8'},{marcat:'Xiaomi',modelot:'MI 10T',linhat:'Mi',processadort:'Snapdragon 865'},{marcat:'Xiaomi',
-  modelot:'REDMI 9',linhat:'Redmi',processadort:'MediaTek Helio G35'},{marcat:'Xiaomi',modelot:'REDMI NOTE 9',linhat:'Redmi',processadort:'Snapdragon 720G'},{marcat:'Xiaomi',modelot:'MI 9T PRO',linhat:'Mi',processadort:'Snapdragon 855'},{marcat:'Motorola',modelot:'MOTO Z2 PLAY',linhat:'Moto Z',processadort:'Snapdragon 626'},{marcat:'Xiaomi',modelot:'REDMI 9I',linhat:'Redmi',processadort:'MediaTek Helio G25'},{marcat:'Xiaomi',modelot:'REDMI NOTE 9 PRO MAX',linhat:'Redmi',processadort:'MediaTek Dimensity 800U'},{marcat:'Motorola',modelot:'MOTO G6',linhat:'Moto G',processadort:'Snapdragon 450'},{marcat:'Xiaomi',modelot:'MI NOTE 10',linhat:'Mi',processadort:'Snapdragon 730G'},{marcat:'Motorola',modelot:'G9 PLAY DUAL SIM',linhat:'Moto G',processadort:'Snapdragon 662'},{marcat:'Motorola',modelot:'MOTO G5',linhat:'Moto G',processadort:'Snapdragon 430'},{marcat:'Motorola',modelot:'MOTO G6 PLAY',linhat:'Moto G',processadort:'Snapdragon 430'},{marcat:'Motorola',modelot:'MOTO G8 POWER',linhat:'Moto G',processadort:'Snapdragon 665'},{marcat:'Motorola',modelot:'ONE VISION',linhat:'One',processadort:'Exynos 9609'},{marcat:'Samsung',modelot:'GALAXY J7 PRIME',linhat:'Galaxy J',processadort:'Exynos 7870'},{marcat:'Samsung',modelot:'GALAXY A50',linhat:'Galaxy A',
-  processadort:'Exynos 9610'},{marcat:'Samsung',modelot:'GALAXY A30S',linhat:'Galaxy A',processadort:'Exynos 7904'},{marcat:'Samsung',modelot:'GALAXY A12',linhat:'Galaxy A',processadort:'MediaTek MT6765 Helio P35'},{marcat:'Motorola',modelot:'MOTO G7 POWER',linhat:'Moto G',processadort:'Snapdragon 632'},{marcat:'Samsung',modelot:'GALAXY S20+',linhat:'Galaxy S',processadort:'Exynos 990'},{marcat:'Xiaomi',modelot:'MI 9 SE',linhat:'Mi',processadort:'Snapdragon 712'},{marcat:'Motorola',modelot:'MOTO G5 PLUS',linhat:'Moto G',processadort:'Snapdragon 625'},{marcat:'Motorola',modelot:'ONE',linhat:'One',processadort:'Snapdragon 625'},{marcat:'Apple',modelot:'IPHONE SE',linhat:'iPhone',processadort:'Apple A13 Bionic'},{marcat:'Samsung',modelot:'GALAXY J5',linhat:'Galaxy J',processadort:'Snapdragon 410'},{marcat:'Samsung',modelot:'GALAXY A10',linhat:'Galaxy A',processadort:'Exynos 7884'},{marcat:'Samsung',modelot:'GALAXY S20',linhat:'Galaxy S',processadort:'Exynos 990'},{marcat:'Samsung',modelot:'GALAXY A30',linhat:'Galaxy A',processadort:'Exynos 7904'},{marcat:'Xiaomi',modelot:'REDMI NOTE 9 PRO MAX',linhat:'Redmi',processadort:'Snapdragon 720G'},{marcat:'Motorola',modelot:'MOTO E5',linhat:'Moto E',processadort:'Snapdragon 425'},{marcat:'Motorola',
-  modelot:'MOTO G5S PLUS',linhat:'Moto G',processadort:'Snapdragon 625'},{marcat:'Samsung',modelot:'GALAXY A20',linhat:'Galaxy A',processadort:'Exynos 7884'},{marcat:'Motorola',modelot:'MOTO G6 PLUS',linhat:'Moto G',processadort:'Snapdragon 630'},{marcat:'Motorola',modelot:'MOTO Z3 FORCE',linhat:'Moto Z',processadort:'Snapdragon 626'},{marcat:'Motorola',modelot:'MOTO E7 PLUS',linhat:'Moto E',processadort:'Snapdragon 460'},{marcat:'Motorola',modelot:'G8 POWER LITE',linhat:'Moto G',processadort:'MediaTek MT6765 Helio P35'},{marcat:'Apple',modelot:'IPHONE 5',linhat:'iPhone',processadort:'Apple A6'},{marcat:'Motorola',modelot:'MOTO E6S',linhat:'Moto E',processadort:'MediaTek MT6762 Helio P22'},{marcat:'Motorola',modelot:'ONE ACTION',linhat:'One',processadort:'Exynos 9609'},{marcat:'Xiaomi',modelot:'MI 11',linhat:'Mi',processadort:'Snapdragon 888'},{marcat:'Xiaomi',modelot:'REDMI 7A',linhat:'Redmi',processadort:'Snapdragon 439'},{marcat:'Motorola',modelot:'MOTO G7 PLUS',linhat:'Moto G',processadort:'Snapdragon 636'},{marcat:'Samsung',modelot:'GALAXY S8+',linhat:'Galaxy S',
-  processadort:'Exynos 8895'},{marcat:'Xiaomi',modelot:'REDMI 9 PRIME',linhat:'Redmi',processadort:'MediaTek Helio G80'},{marcat:'Samsung',modelot:'GALAXY A70',linhat:'Galaxy A',processadort:'Snapdragon 675'},{marcat:'Xiaomi',modelot:'MI 9 LITE',linhat:'Mi',processadort:'Snapdragon 710'},{marcat:'Motorola',modelot:'MOTO G8',linhat:'Moto G',processadort:'Snapdragon 665'},{marcat:'Motorola',modelot:'MOTO Z3 PLAY',linhat:'Moto Z',processadort:'Snapdragon 636'},{marcat:'Xiaomi',modelot:'REDMI 8',linhat:'Redmi',processadort:'Snapdragon 439'},{marcat:'Motorola',modelot:'G9 PLUS DUAL SIM',linhat:'Moto G',processadort:'Snapdragon 730G'},{marcat:'Motorola',modelot:'MOTO G4',linhat:'Moto G',processadort:'Snapdragon 617'},{marcat:'Samsung',modelot:'GALAXY A7',linhat:'Galaxy A',processadort:'Exynos 7885'},{marcat:'Xiaomi',modelot:'MI 10T PRO',linhat:'Mi',processadort:'Snapdragon 865'},{marcat:'Motorola',modelot:'MOTO E6 PLUS',linhat:'Moto E',processadort:'MediaTek MT6762 Helio P22'},{marcat:'Motorola',modelot:'MOTO ONE',linhat:'One',processadort:'Snapdragon 625'},{marcat:'Motorola',modelot:'MOTO E6 PLAY',linhat:'Moto E',processadort:'MediaTek MT6739'},{marcat:'Motorola',modelot:'MOTO G30',linhat:'Moto G',
-  processadort:'Snapdragon 662'},{marcat:'Motorola',modelot:'MOTO G7',linhat:'Moto G',processadort:'Snapdragon 632'},{marcat:'Xiaomi',modelot:'MI 10T LITE',linhat:'Mi',processadort:'Snapdragon 750G'},{marcat:'Motorola',modelot:'MOTO G9 PLAY',linhat:'Moto G',processadort:'Snapdragon 662'},{marcat:'Motorola',modelot:'MOTOROLA ONE FUSION',linhat:'One',processadort:'Snapdragon 710'},{marcat:'Motorola',modelot:'ONE MACRO',linhat:'One',processadort:'MediaTek MT6771 Helio P70'},{marcat:'Samsung',modelot:'GALAXY GRAN PRIME',linhat:'Galaxy Grand',processadort:'Snapdragon 410'},{marcat:'Samsung',modelot:'GALAXY A02S',linhat:'Galaxy',processadort:'Snapdragon 450'},{marcat:'Samsung',modelot:'GALAXY A12',linhat:'Galaxy',processadort:'MediaTek MT6765 Helio P35'},{marcat:'Samsung',modelot:'GALAXY J6+ DUOS',linhat:'Galaxy J',processadort:'Snapdragon 425'},{marcat:'Samsung',modelot:'GALAXY A52',linhat:'Galaxy A',processadort:'Snapdragon 720G'},{marcat:'Samsung',modelot:'GALAXY A02',linhat:'Galaxy A',processadort:'MediaTek MT6739W'},{marcat:'Samsung',modelot:'GALAXY A72',
-  linhat:'Galaxy A',processadort:'Snapdragon 720G'},{marcat:'Samsung',modelot:'GALAXY J5 PRO',linhat:'Galaxy J',processadort:'Exynos 7870'},{marcat:'Motorola',modelot:'MOTO X4',linhat:'Moto X',processadort:'Snapdragon 630'},{marcat:'Apple',modelot:'IPHONE 5C',linhat:'iPhone',processadort:'Apple A6'},{marcat:'Samsung',modelot:'GALAXY S6',linhat:'Galaxy S',processadort:'Exynos 7420'},{marcat:'Samsung',modelot:'GALAXY J8 DUOS',linhat:'Galaxy J',processadort:'Snapdragon 450'},{marcat:'Motorola',modelot:'MOTO G9 POWER',linhat:'Moto G',processadort:'Snapdragon 662'},{marcat:'Samsung',modelot:'GALAXY A8',linhat:'Galaxy A',processadort:'Exynos 7885'},{marcat:'Motorola',modelot:'MOTO Z PLAY',linhat:'Moto Z',processadort:'Snapdragon 625'},{marcat:'Samsung',modelot:'GALAXY J7 PRO DUOS',linhat:'Galaxy J',processadort:'Exynos 7870'},{marcat:'Xiaomi',modelot:'MI 11 LITE',linhat:'Mi',processadort:'Snapdragon 732G'},
-  {marcat:'Motorola',modelot:'MOTO E5 PLAY',linhat:'Moto E',processadort:'Snapdragon 425'},{marcat:'Motorola',modelot:'MOTO E7',linhat:'Moto E',processadort:'MediaTek Helio G25'},{marcat:'Samsung',modelot:'GALAXY A5',linhat:'Galaxy A',processadort:'Exynos 7880'},{marcat:'Samsung',modelot:'GALAXY J4',linhat:'Galaxy J',processadort:'Exynos 7570'},{marcat:'Samsung',modelot:'GALAXY J5 PRIME',linhat:'Galaxy J',processadort:'Exynos 7570'},{marcat:'Samsung',modelot:'GALAXY A32',linhat:'Galaxy A',processadort:'MediaTek Helio G80'},{marcat:'Samsung',modelot:'GALAXY J7',linhat:'Galaxy J',processadort:'Exynos 7580'},{marcat:'Apple',modelot:'IPHONE 6S',linhat:'iPhone',processadort:'Dual-Core 1.8 Ghz'},{marcat:'Motorola',modelot:'MOTO G10',linhat:'Moto G',processadort:'Snapdragon 460'},{marcat:'Motorola',modelot:'MOTO G8 PLUS',linhat:'Moto G',processadort:'Snapdragon 665'},{marcat:'Samsung',modelot:'GALAXY A20',linhat:'Galaxy A',processadort:'Snapdragon 450'},{marcat:'Samsung',modelot:'GALAXY J8',linhat:'Galaxy J',processadort:'Snapdragon 450'},{marcat:'Samsung',modelot:'GALAXY A10S',
-  linhat:'Galaxy',processadort:'MediaTek MT6762 Helio P22'},{marcat:'Samsung',modelot:'GALAXY A31',linhat:'Galaxy',processadort:'MediaTek MT6768 Helio P65'},{marcat:'Motorola',modelot:'MOTO G8 POWER',linhat:'Moto G',processadort:'MediaTek MT6765 Helio P35'},{marcat:'Motorola',modelot:'MOTO G10',linhat:'Moto',processadort:'Snapdragon 460'},{marcat:'Motorola',modelot:'MOTO G5 PLUS',linhat:'Moto G',processadort:'Snapdragon 765 5G'},{marcat:'Samsung',modelot:'GALAXY A02',linhat:'Galaxy',processadort:'MediaTek MT6739W'},{marcat:'Samsung',modelot:'GALAXY A02S',
-  linhat:'Galaxy A',processadort:'Snapdragon 450'},{marcat:'Samsung',modelot:'GALAXY A7',linhat:'Galaxy A',processadort:'Exynos 7880'}];
-  dicionario_filtrado = [];
 
-  linhas = ['Black Shark','E','Galaxy','Galaxy A','Galaxy J','Galaxy M','Galaxy Note','Galaxy S','Galaxy Z','iPhone','iPhone SE','Mi',
-  'Moto C','Moto E','Moto Edge','Moto G','Moto G100','Nexus','Note','One','Poco','Redmi','SE','Series 3','Space Gray'];
-  modelos = ['iPhone 6','iPhone 7','iPhone 8','iPhone 11','iPhone 12','iPhone SE (2nd Generation)','Redmi 6','Mi 6','iPhone 11 Pro Max','Mi 10','Galaxy S21 Ultra',
-  'Mi 10 Pro','Galaxy S21 Plus','Mi 10 Ultra','Mi 10i','iPhone 12 Mini','Mi 10S','iPhone 12 Pro','iPhone 12 Pro Max','Galaxy S21','Redmi 10X Pro','Mi 11 Lite',
-  'Mi 11 Litw','Nexus 6','Moto G8','Mi 2S','Mi 3S','Moto G100','Mi 5S','Redmi 6 Pro','Redmi Note 9','Redmi 6A','Galaxy A72','Galaxy 21 Ultra','Moto G8700','Redmi 7A',
-  'Galaxy A52','Galaxy A32','Mi 8','Galaxy S6 Edge','Galaxy S6','Redmi 8A','Redmi 8A Pro','Mi 9','Galaxy A31','Redmi Note 9 Pro','Moto C A1000','Galaxy A10S',
-  'Redmi 9AT','Redmi 9C','Redmi 9i','Redmi 9S','Galaxy A02S','Galaxy XCover Pro','Galaxy S20','Moto A1210','iPhone 5S','Moto A300','MI 9T','Galaxy Note 20 Ultra',
-  'Moto A388','Galaxy S9','iPhone 6 Plus','Redmi 9T','Moto G6 Plus','iPhone 6S','Galaxy A51','Galaxy S10','Galaxy Note 20','Redmi Note 9T','Mi A1','Galaxy S9+',
-  'Galaxy J7','Galaxy Noite 4','iPhone 6S Plus','Galaxy A10s','Galaxy A6+','Black Shark 2','Black Shark 2 Pro','Galaxy A8+','Black Shark 3S','Galaxy Z Fold 2',
-  'Galaxy A01','Black Shark 4','Galaxy A12','Atrix','Galaxy J7 Prime','Atrix TV','Mi CC9','Poco X3','Galaxy A71','Moto C','Poco F3','Galaxy A10','Galaxy A7 (2018)',
-  'Galaxy A11','Galaxy J6+','Galaxy S20 FE','Moto C385','Moto C650','Galaxy S20+','Galaxy S8+','Redmi K20 Pro','Samsung A52','Redmi K30 Pro','Redmi K40','Galaxy S21+',
-  'iPhone 7 Plus','Galaxy A02','Galaxy J5','Galaxy J7 Pro','Galaxy S7 Edge','Galaxy A21S','Galaxy A5','Galaxy A9','Redmi Note 7','Galaxy Note 5','Redmi 9','Redmi M3',
-  'Mi 3 Max','Mi 10T','Moto E2','Mi 10T Lite','Moto E4','Galaxy A7','Moto E4 Plus','Galaxy Note 9','Galaxy S20 Ultra','Galaxy S8 Plus','Galaxy J1 Mini','Moto E5','Mi 11',
-  'Moto E5 Play','Mi 9 SE','Galaxy Note10 Plus','Moto E6 Play','Galaxy J4 Plus','Mi 9T','Mi 9T Pro','Moto E6 Plus','Moto E6i','Galaxy A','Moto E6s','Galaxy A8','Mi A2',
-  'Galaxy S10 Lite','Galaxy S10e','iPhone 8 Plus','Galaxy S8','Moto E7','Moto E7 Plus','Moto Edge','Mi A3','Moto Edge+','Mi 3 Mix','Galaxy Note 3','Mi Note 10','Galaxy S5',
-  'EX128','MI 6','Moto G1','Moto G2','Galaxy A32 Duos','Galaxy A7 2018','Galaxy M31','Galaxy Z Flip','Moto G3','Mi Mix 18k','Mi Mix 2','Galaxy J5 Prime','Galaxy J6','Moto G5',
-  'Galaxy Note','Galaxy A02s','Moto G5 Plus','Moto G Fast','iPhone SE','G Play','Moto G Pro','Mi Mix 3','Moto G Stylus','Iphone 7','Moto G Turbo','Moto G10','Note 9 Pro',
-  'Galaxy A70','Galaxy Note 8','Galaxy J4','Moto G10 Power','Galaxy J9','Galaxy J7 Metal','Galaxy M11','Galaxy S10+','Iphone 8','Note 10','iPhone XS','Moto G30','Note 10 Pro',
-  'Moto G4','Redmi Note 10 Pro','Redmi Note 10 Pro Max','Redmi Note 10S','iPhone 11 Pro','Moto G4 Play','Moto G4 Plus','Redmi Note 6 Pro','Redmi Note 7 Pro','Mi Note 9','Moto G5s',
-  'iPhone 11 Pro Max','Galaxy Note 10','Moto G5s Plus','Note 9S Pro','Poco C3','Moto G6','Moto G6 Play','Poco F1','Galaxy S9 Plus','Moto G60','Moto G7','Moto G7 Play','Moto G7 Plus',
-  'Moto G7 Power','Poco F2 Pro','Moto G8 Play','Moto G8 Power','Moto G9','Moto G9 Play','Moto G9 Plus','Moto G9 Power','Lenovo K10 Note','Moto M','Moto Maxx','Moto E6I','Moto E',
-  'POCO F3 5G','Moto E6S','Poco F3 5G','Moto 7','Moto E7 Power','Motorola One Fusion','Moto G 9 Play','Poco M3','Poco X2','Poco X3 Pro','Redmi Pro','Redmi Note 10','Redmi 10x',
-  'Redmi 9A','Galaxy A31S','Redmi Note 8 Pro','Redmi Note 8T','Galaxy Note 10 Plus','Redmi Note 6','Galaxy Note 10 Lite','Redmi Note 8','Redmi Note 9S','Galaxy S10 Plus','Redmi S2',
-  'Redmi 9 Prime','Cubot P40','Redmi Note 8  Pro','iPhone X','iPhone XR','Moto G20','Moto G 5G','Moto One','Moto One Action','Moto One Edge','Moto One Vision',
-  'Moto Z','moto z play 2','Moto Z2 Force','Moto Z2 Play','Moto z3 play','Moto G Plus','Moto G 6','Moto One Hyper','iPhone 10','iPhone 12 Mi','iPhone 3G','iPhone 3GS','iPhone 4',
-  'iPhone 4s','iPhone 5','iPhone 5c','iPhone 5s','iPhone 7S','iPhone Se','iPhone XS Max','iPhone 12 Pro Mini','Moto E Vision','Galaxy A706','Motorola One Action','Motorola One Macro',
-  'Motorola One Vision','Motorola One Fusion Plus','One Fusion+','Motorola Macro Dual','Motorola One Vision Plus','Motorola One Zoom','Moto P30','Moto RAZR','Moto RAZR I','Moto RAZR V3',
-  'Moto S5','One Edge','Moto Turbo','Moto X','Moto X Force','Moto X Play','Moto X Style','Moto Z3 Play','Motorola One','Motorola Razr','Moto G8 Plus','Motorola One Hyper',
-  'Moto G8 Power Lite','Moto G 60','Moto Z Play','Moto Z Power','Moto Z Style','Moto Z3 Force','Moto Z3'];
-  modelos_processador = ['Apple A13 Bionic'];
+  dicfiltrado_modelos = [{modelot:"Selecione uma linha"}];
+  dicfiltrado_linhas = [{linhat:"Selecione uma marca"}];
+  dicfiltrado_processador = [{processadort:"Selecione um modelo"}];
+
+  dicionario_modelo = [{linhat:'Moto G',modelot:'G8 POWER LITE'},{linhat:'Moto G',modelot:'G9 PLAY DUAL SIM'},{linhat:'Moto G',modelot:'G9 PLUS DUAL SIM'},
+  {linhat:'Galaxy A',modelot:'Galaxy A01'},{linhat:'Galaxy A',modelot:'Galaxy A02'},{linhat:'Galaxy',modelot:'Galaxy A02'},{linhat:'Galaxy',modelot:'Galaxy A02S'},
+  {linhat:'Galaxy A',modelot:'Galaxy A02S'},{linhat:'Galaxy A',modelot:'Galaxy A10'},{linhat:'Galaxy A',modelot:'Galaxy A10S'},{linhat:'Galaxy',modelot:'Galaxy A10S'},
+  {linhat:'Galaxy A',modelot:'Galaxy A11'},{linhat:'Galaxy A',modelot:'Galaxy A12'},{linhat:'Galaxy',modelot:'Galaxy A12'},{linhat:'Galaxy A',modelot:'Galaxy A20'},
+  {linhat:'Galaxy A',modelot:'Galaxy A21S'},{linhat:'Galaxy A',modelot:'Galaxy A30'},{linhat:'Galaxy A',modelot:'Galaxy A30S'},{linhat:'Galaxy A',modelot:'Galaxy A31'},
+  {linhat:'Galaxy',modelot:'Galaxy A31'},{linhat:'Galaxy A',modelot:'Galaxy A32'},{linhat:'Galaxy A',modelot:'Galaxy A5'},{linhat:'Galaxy A',modelot:'Galaxy A50'},
+  {linhat:'Galaxy A',modelot:'Galaxy A51'},{linhat:'Galaxy A',modelot:'Galaxy A52'},{linhat:'Galaxy A',modelot:'Galaxy A7'},{linhat:'Galaxy A',modelot:'Galaxy A70'},
+  {linhat:'Galaxy A',modelot:'Galaxy A71'},{linhat:'Galaxy A',modelot:'Galaxy A72'},{linhat:'Galaxy A',modelot:'Galaxy A8'},{linhat:'Galaxy Grand',modelot:'Galaxy GRAN PRIME'},
+  {linhat:'Galaxy J',modelot:'Galaxy J4'},{linhat:'Galaxy J',modelot:'Galaxy J5'},{linhat:'Galaxy J',modelot:'Galaxy J5 PRIME'},{linhat:'Galaxy J',modelot:'Galaxy J5 PRO'},
+  {linhat:'Galaxy J',modelot:'Galaxy J6+ DUOS'},{linhat:'Galaxy J',modelot:'Galaxy J7'},{linhat:'Galaxy J',modelot:'Galaxy J7 PRIME'},{linhat:'Galaxy J',modelot:'Galaxy J7 PRO DUOS'},
+  {linhat:'Galaxy J',modelot:'Galaxy J8'},{linhat:'Galaxy J',modelot:'Galaxy J8 DUOS'},{linhat:'Galaxy S',modelot:'Galaxy S20'},{linhat:'Galaxy S',modelot:'Galaxy S20+'},
+  {linhat:'Galaxy S',modelot:'Galaxy S6'},{linhat:'Galaxy S',modelot:'Galaxy S8+'},{linhat:'iPhone',modelot:'iPhone 11'},{linhat:'iPhone',modelot:'iPhone 11 PRO'},
+  {linhat:'iPhone',modelot:'iPhone 11 PRO MAX'},{linhat:'iPhone',modelot:'iPhone 5'},{linhat:'iPhone',modelot:'iPhone 5C'},{linhat:'iPhone',modelot:'iPhone 5S'},
+  {linhat:'iPhone',modelot:'iPhone 6'},{linhat:'iPhone',modelot:'iPhone 6S'},{linhat:'iPhone',modelot:'iPhone 6S PLUS'},{linhat:'iPhone',modelot:'iPhone 7'},
+  {linhat:'iPhone',modelot:'iPhone 7 PLUS'},{linhat:'iPhone',modelot:'iPhone 8'},{linhat:'iPhone',modelot:'iPhone 8 PLUS'},{linhat:'iPhone',modelot:'iPhone SE'},
+  {linhat:'iPhone',modelot:'iPhone X'},{linhat:'iPhone',modelot:'iPhone XR'},{linhat:'iPhone',modelot:'iPhone XS'},{linhat:'iPhone',modelot:'iPhone XS MAX'},
+  {linhat:'Linha',modelot:'marca_renomeada_upper'},{linhat:'Mi',modelot:'MI 10T'},{linhat:'Mi',modelot:'MI 10T LITE'},{linhat:'Mi',modelot:'MI 10T PRO'},
+  {linhat:'Mi',modelot:'MI 11'},{linhat:'Mi',modelot:'MI 11 LITE'},{linhat:'Mi',modelot:'MI 9'},{linhat:'Mi',modelot:'MI 9 LITE'},{linhat:'Mi',modelot:'MI 9 SE'},
+  {linhat:'Mi',modelot:'MI 9T'},{linhat:'Mi',modelot:'MI 9T PRO'},{linhat:'Mi',modelot:'MI A3'},{linhat:'Mi',modelot:'MI NOTE 10'},{linhat:'Moto E',modelot:'Moto E 6S'},
+  {linhat:'Moto E',modelot:'Moto E5'},{linhat:'Moto E',modelot:'Moto E5 PLAY'},{linhat:'Moto E',modelot:'Moto E6 PLAY'},{linhat:'Moto E',modelot:'Moto E6 PLUS'},
+  {linhat:'Moto E',modelot:'Moto E6S'},{linhat:'Moto E',modelot:'Moto E7'},{linhat:'Moto E',modelot:'Moto E7 PLUS'},{linhat:'Moto G',modelot:'Moto G10'},
+  {linhat:'Moto',modelot:'Moto G10'},{linhat:'Moto G',modelot:'Moto G30'},{linhat:'Moto G',modelot:'Moto G4'},{linhat:'Moto G',modelot:'Moto G5'},{linhat:'Moto G',modelot:'Moto G5 PLUS'},
+  {linhat:'Moto G',modelot:'Moto G5S'},{linhat:'Moto G',modelot:'Moto G5S PLUS'},{linhat:'Moto G',modelot:'Moto G6'},{linhat:'Moto G',modelot:'Moto G6 PLAY'},
+  {linhat:'Moto G',modelot:'Moto G6 PLUS'},{linhat:'Moto G',modelot:'Moto G7'},{linhat:'Moto G',modelot:'Moto G7 PLAY'},{linhat:'Moto G',modelot:'Moto G7 PLUS'},
+  {linhat:'Moto G',modelot:'Moto G7 POWER'},{linhat:'Moto G',modelot:'Moto G8'},{linhat:'Moto G',modelot:'Moto G8 PLAY'},{linhat:'Moto G',modelot:'Moto G8 PLUS'},
+  {linhat:'Moto G',modelot:'Moto G8 POWER'},{linhat:'Moto G',modelot:'Moto G9 PLAY'},{linhat:'Moto G',modelot:'Moto G9 POWER'},{linhat:'One',modelot:'Moto ONE'},
+  {linhat:'Moto X',modelot:'Moto X4'},{linhat:'Moto Z',modelot:'Moto Z PLAY'},{linhat:'Moto Z',modelot:'Moto Z2 PLAY'},{linhat:'Moto Z',modelot:'Moto Z3 FORCE'},
+  {linhat:'Moto Z',modelot:'Moto Z3 PLAY'},{linhat:'One',modelot:'Motorola ONE FUSION'},{linhat:'One',modelot:'ONE'},{linhat:'One',modelot:'ONE ACTION'},{linhat:'One',modelot:'One Macro'},
+  {linhat:'One',modelot:'ONE VISION'},{linhat:'Redmi',modelot:'Redmi 7A'},{linhat:'Redmi',modelot:'Redmi 8'},{linhat:'Redmi',modelot:'Redmi 8A'},{linhat:'Redmi',modelot:'Redmi 9'},
+  {linhat:'Redmi',modelot:'Redmi 9 PRIME'},{linhat:'Redmi',modelot:'Redmi 9A'},{linhat:'Redmi',modelot:'Redmi 9C'},{linhat:'Redmi',modelot:'Redmi 9I'},{linhat:'Redmi',modelot:'Redmi 9T'},
+  {linhat:'Redmi',modelot:'Redmi NOTE 10'},{linhat:'Redmi',modelot:'Redmi NOTE 7'},{linhat:'Redmi',modelot:'Redmi NOTE 8'},{linhat:'Redmi',modelot:'Redmi NOTE 8 PRO'},
+  {linhat:'Redmi',modelot:'Redmi NOTE 9'},{linhat:'Redmi',modelot:'Redmi NOTE 9 PRO MAX'},{linhat:'Redmi',modelot:'Redmi NOTE 9S'}];
+  dicionario_linhas = [{marcat:'Samsung',linhat:'Galaxy'},{marcat:'Samsung',linhat:'Galaxy A'},{marcat:'Samsung',linhat:'Galaxy Grand'},{marcat:'Samsung',linhat:'Galaxy J'},
+  {marcat:'Samsung',linhat:'Galaxy S'},{marcat:'Apple',linhat:'iPhone'},{marcat:'Xiaomi',linhat:'Mi'},{marcat:'Motorola',linhat:'Moto'},{marcat:'Motorola',linhat:'Moto E'},
+  {marcat:'Motorola',linhat:'Moto G'},{marcat:'Motorola',linhat:'Moto X'},{marcat:'Motorola',linhat:'Moto Z'},{marcat:'Motorola',linhat:'One'}];
+  dicionario_processador = [{modelot:'iPhone 11',processadort:'A13 Bionic com Neural Engine de terceira gerac...'},{modelot:'iPhone 7',processadort:'Apple A10 Fusion'},
+  {modelot:'iPhone 7 PLUS',processadort:'Apple A10 Fusion'},{modelot:'iPhone 8',processadort:'Apple A11 Bionic'},{modelot:'iPhone 8 PLUS',processadort:'Apple A11 Bionic'},
+  {modelot:'iPhone X',processadort:'Apple A11 Bionic'},{modelot:'iPhone 11',processadort:'Apple A12 Bionic'},{modelot:'iPhone XR',processadort:'Apple A12 Bionic'},
+  {modelot:'iPhone XS',processadort:'Apple A12 Bionic'},{modelot:'iPhone XS MAX',processadort:'Apple A12 Bionic'},{modelot:'iPhone 11',processadort:'Apple A13 Bionic'},
+  {modelot:'iPhone 11 PRO MAX',processadort:'Apple A13 Bionic'},{modelot:'iPhone 11 PRO',processadort:'Apple A13 Bionic'},{modelot:'iPhone SE',processadort:'Apple A13 Bionic'},
+  {modelot:'iPhone 5',processadort:'Apple A6'},{modelot:'iPhone 5C',processadort:'Apple A6'},{modelot:'iPhone 5S',processadort:'Apple A7'},{modelot:'iPhone 6',processadort:'Apple A8'},
+  {modelot:'iPhone 6S PLUS',processadort:'Apple A8'},{modelot:'iPhone 6S',processadort:'Apple A9'},{modelot:'iPhone SE',processadort:'Apple A9'},{modelot:'iPhone 6S PLUS',processadort:'Apple A9'},
+  {modelot:'iPhone 6S',processadort:'Dual-Core 1.8 Ghz'},{modelot:'Galaxy S6',processadort:'Exynos 7420'},{modelot:'Galaxy J4',processadort:'Exynos 7570'},{modelot:'Galaxy J5 PRIME',processadort:'Exynos 7570'},
+  {modelot:'Galaxy J7',processadort:'Exynos 7580'},{modelot:'Galaxy J7 PRIME',processadort:'Exynos 7870'},{modelot:'Galaxy J5 PRO',processadort:'Exynos 7870'},{modelot:'Galaxy J7 PRO DUOS',processadort:'Exynos 7870'},
+  {modelot:'Galaxy A5',processadort:'Exynos 7880'},{modelot:'Galaxy A7',processadort:'Exynos 7880'},{modelot:'Galaxy A10',processadort:'Exynos 7884'},{modelot:'Galaxy A20',processadort:'Exynos 7884'},
+  {modelot:'Galaxy A7',processadort:'Exynos 7885'},{modelot:'Galaxy A8',processadort:'Exynos 7885'},{modelot:'Galaxy A30S',processadort:'Exynos 7904'},{modelot:'Galaxy A30',processadort:'Exynos 7904'},
+  {modelot:'Galaxy A21S',processadort:'Exynos 850'},{modelot:'Galaxy S8+',processadort:'Exynos 8895'},{modelot:'ONE VISION',processadort:'Exynos 9609'},{modelot:'ONE ACTION',processadort:'Exynos 9609'},
+  {modelot:'Galaxy A50',processadort:'Exynos 9610'},{modelot:'Galaxy A51',processadort:'Exynos 9611'},{modelot:'Galaxy S20+',processadort:'Exynos 990'},{modelot:'Galaxy S20',processadort:'Exynos 990'},
+  {modelot:'Redmi NOTE 9 PRO MAX',processadort:'MediaTek Dimensity 800U'},{modelot:'Redmi 9A',processadort:'MediaTek Helio G25'},{modelot:'Redmi 9I',processadort:'MediaTek Helio G25'},
+  {modelot:'Moto E7',processadort:'MediaTek Helio G25'},{modelot:'Redmi 9C',processadort:'MediaTek Helio G35'},{modelot:'Redmi 9',processadort:'MediaTek Helio G35'},{modelot:'Redmi 9',processadort:'MediaTek Helio G80'},
+  {modelot:'Redmi 9 PRIME',processadort:'MediaTek Helio G80'},{modelot:'Galaxy A32',processadort:'MediaTek Helio G80'},{modelot:'Redmi NOTE 9',processadort:'MediaTek Helio G85'},
+  {modelot:'Redmi NOTE 8 PRO',processadort:'MediaTek Helio G90T'},{modelot:'Galaxy A01',processadort:'Mediatek MT6739'},{modelot:'Moto E6 PLAY',processadort:'MediaTek MT6739'},
+  {modelot:'Galaxy A02',processadort:'MediaTek MT6739W'},{modelot:'Galaxy A10S',processadort:'MediaTek MT6762 Helio P22'},{modelot:'Moto E 6S',processadort:'MediaTek MT6762 Helio P22'},
+  {modelot:'Moto E6S',processadort:'MediaTek MT6762 Helio P22'},{modelot:'Moto E6 PLUS',processadort:'MediaTek MT6762 Helio P22'},{modelot:'Galaxy A12',processadort:'MediaTek MT6765 Helio P35'},
+  {modelot:'G8 POWER LITE',processadort:'MediaTek MT6765 Helio P35'},{modelot:'Moto G8 POWER',processadort:'MediaTek MT6765 Helio P35'},{modelot:'Galaxy A31',processadort:'MediaTek MT6768 Helio P65'},
+  {modelot:'One Macro',processadort:'MediaTek MT6771 Helio P70'},{modelot:'Moto G8 PLAY',processadort:'MediaTek MT6771 Helio P70M'},{modelot:'Galaxy J5',processadort:'Snapdragon 410'},
+  {modelot:'Galaxy GRAN PRIME',processadort:'Snapdragon 410'},{modelot:'Moto E5',processadort:'Snapdragon 425'},{modelot:'Galaxy J6+ DUOS',processadort:'Snapdragon 425'},
+  {modelot:'Moto E5 PLAY',processadort:'Snapdragon 425'},{modelot:'Moto G5S',processadort:'Snapdragon 430'},{modelot:'Moto G5',processadort:'Snapdragon 430'},
+  {modelot:'Moto G6 PLAY',processadort:'Snapdragon 430'},{modelot:'Galaxy A01',processadort:'Snapdragon 439'},{modelot:'Redmi 8A',processadort:'Snapdragon 439'},
+  {modelot:'Redmi 7A',processadort:'Snapdragon 439'},{modelot:'Redmi 8',processadort:'Snapdragon 439'},{modelot:'Galaxy A11',processadort:'Snapdragon 450'},
+  {modelot:'Moto G6',processadort:'Snapdragon 450'},{modelot:'Galaxy A02S',processadort:'Snapdragon 450'},{modelot:'Galaxy J8 DUOS',processadort:'Snapdragon 450'},
+  {modelot:'Galaxy A20',processadort:'Snapdragon 450'},{modelot:'Galaxy J8',processadort:'Snapdragon 450'},{modelot:'Moto E7 PLUS',processadort:'Snapdragon 460'},
+  {modelot:'Moto G10',processadort:'Snapdragon 460'},{modelot:'Moto G4',processadort:'Snapdragon 617'},{modelot:'Moto G5 PLUS',processadort:'Snapdragon 625'},
+  {modelot:'ONE',processadort:'Snapdragon 625'},{modelot:'Moto G5S PLUS',processadort:'Snapdragon 625'},{modelot:'Moto ONE',processadort:'Snapdragon 625'},
+  {modelot:'Moto Z PLAY',processadort:'Snapdragon 625'},{modelot:'Moto Z2 PLAY',processadort:'Snapdragon 626'},{modelot:'Moto Z3 FORCE',processadort:'Snapdragon 626'},
+  {modelot:'Moto G6 PLUS',processadort:'Snapdragon 630'},{modelot:'Moto X4',processadort:'Snapdragon 630'},{modelot:'Moto G7 PLAY',processadort:'Snapdragon 632'},
+  {modelot:'Moto G7 POWER',processadort:'Snapdragon 632'},{modelot:'Moto G7',processadort:'Snapdragon 632'},{modelot:'Moto G7 PLUS',processadort:'Snapdragon 636'},
+  {modelot:'Moto Z3 PLAY',processadort:'Snapdragon 636'},{modelot:'Redmi NOTE 7',processadort:'Snapdragon 660'},{modelot:'Redmi 9T',processadort:'Snapdragon 662'},
+  {modelot:'G9 PLAY DUAL SIM',processadort:'Snapdragon 662'},{modelot:'Moto G30',processadort:'Snapdragon 662'},{modelot:'Moto G9 PLAY',processadort:'Snapdragon 662'},
+  {modelot:'Moto G9 POWER',processadort:'Snapdragon 662'},{modelot:'Redmi NOTE 8',processadort:'Snapdragon 665'},{modelot:'MI A3',processadort:'Snapdragon 665'},
+  {modelot:'Moto G8 POWER',processadort:'Snapdragon 665'},{modelot:'Moto G8',processadort:'Snapdragon 665'},{modelot:'Moto G8 PLUS',processadort:'Snapdragon 665'},
+  {modelot:'Galaxy A70',processadort:'Snapdragon 675'},{modelot:'Redmi NOTE 10',processadort:'Snapdragon 678'},{modelot:'MI 9 LITE',processadort:'Snapdragon 710'},
+  {modelot:'Motorola ONE FUSION',processadort:'Snapdragon 710'},{modelot:'MI 9 SE',processadort:'Snapdragon 712'},{modelot:'Redmi NOTE 9S',processadort:'Snapdragon 720G'},
+  {modelot:'Redmi NOTE 9',processadort:'Snapdragon 720G'},{modelot:'Redmi NOTE 9 PRO MAX',processadort:'Snapdragon 720G'},{modelot:'Galaxy A52',processadort:'Snapdragon 720G'},
+  {modelot:'Galaxy A72',processadort:'Snapdragon 720G'},{modelot:'MI 9T',processadort:'Snapdragon 730'},{modelot:'Galaxy A71',processadort:'Snapdragon 730'},
+  {modelot:'MI NOTE 10',processadort:'Snapdragon 730G'},{modelot:'G9 PLUS DUAL SIM',processadort:'Snapdragon 730G'},{modelot:'MI 11 LITE',processadort:'Snapdragon 732G'},
+  {modelot:'MI 10T LITE',processadort:'Snapdragon 750G'},{modelot:'Moto G5 PLUS',processadort:'Snapdragon 765 5G'},{modelot:'MI 9',processadort:'Snapdragon 855'},
+  {modelot:'MI 9T PRO',processadort:'Snapdragon 855'},{modelot:'MI 10T',processadort:'Snapdragon 865'},{modelot:'MI 10T PRO',processadort:'Snapdragon 865'},
+  {modelot:'MI 11',processadort:'Snapdragon 888'}];
 
   searchText = new Subject();
   public modelosFiltrados: ReplaySubject<string[]> = new ReplaySubject<string[]>(1);
@@ -94,7 +134,7 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
       this.phone = this.router.getCurrentNavigation().extras.state.phone;
       this.result = this.router.getCurrentNavigation().extras.state.result;
       this.titulo = this.phone.Marca + " " + this.phone.Linha + " " +
-      this.phone.memoria_ram + " " + this.phone.memoria_interna + " " + this.phone.condition
+        this.phone.memoria_ram + " " + this.phone.memoria_interna + " " + this.phone.condition
     }
     else {
       this.phone = new Phone();
@@ -103,47 +143,47 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.bankCtrl.setValue(this.modelos[10]);
-    this.modelosFiltrados.next(this.modelos.slice());
-    this.bankFilterCtrl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filtrarModelos();
-      });
+    // this.bankCtrl.setValue(this.modelos[10]);
+    // this.modelosFiltrados.next(this.modelos.slice());
+    // this.bankFilterCtrl.valueChanges
+    //   .pipe(takeUntil(this._onDestroy))
+    //   .subscribe(() => {
+    //     this.filtrarModelos();
+    //   });
   }
   ngAfterViewInit() {
-    this.setInitialValue();
+    // this.setInitialValue();
   }
 
   ngOnDestroy() {
-    this._onDestroy.next();
-    this._onDestroy.complete();
+    // this._onDestroy.next();
+    // this._onDestroy.complete();
   }
 
   protected setInitialValue() {
-    this.modelosFiltrados
-      .pipe(take(1), takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.singleSelect.compareWith = (a, b) => a && b && a.id === b.id;
-      });
+    // this.modelosFiltrados
+    //   .pipe(take(1), takeUntil(this._onDestroy))
+    //   .subscribe(() => {
+    //     this.singleSelect.compareWith = (a, b) => a && b && a.id === b.id;
+    //   });
   }
 
   protected filtrarModelos() {
-    if (!this.modelos) {
-      return;
-    }
-    // get the search keyword
-    let search = this.bankFilterCtrl.value;
-    if (!search) {
-      this.modelosFiltrados.next(this.dicionario_filtrado.slice());
-      return;
-    } else {
-      search = search.toLowerCase();
-    }
-    // filter the banks
-    this.modelosFiltrados.next(
-      this.dicionario_filtrado.filter(modelo => modelo.modelot.toLowerCase().indexOf(search) > -1)
-    );
+    // if (!this.modelos) {
+    //   return;
+    // }
+    // // get the search keyword
+    // let search = this.bankFilterCtrl.value;
+    // if (!search) {
+    //   this.modelosFiltrados.next(this.dicionario_filtrado.slice());
+    //   return;
+    // } else {
+    //   search = search.toLowerCase();
+    // }
+    // // filter the banks
+    // this.modelosFiltrados.next(
+    //   this.dicionario_filtrado.filter(modelo => modelo.modelot.toLowerCase().indexOf(search) > -1)
+    // );
   }
 
   onSubmit(): void {
@@ -152,18 +192,29 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.SearchService.search(this.phone)
       .subscribe(ret => {
         this.result = ret.PRECO;
-        this.titulo = this.phone.Marca + " " + this.phone.Linha + " " +
-          this.phone.memoria_ram + "GB " + this.phone.memoria_interna + "GB " + this.phone.condition
+        this.titulo = this.phone.Marca + " " + this.phone.Linha + " " + this.phone.modelo + " " + this.phone.modelo_do_processador_y + " " +
+          this.phone.memoria_ram + "GB " + this.phone.memoria_interna + "GB " + this.phone.condition.value
       }, error => {
         this.NotificationServe.showError(error.message, "Erro!");
       });
   }
 
-  metodo(marca_selecionada){
-    this.dicionario_filtrado = this.dicionario_completo.filter((c) => {
+  filtro_para_linha(marca_selecionada) {
+    this.dicfiltrado_linhas = this.dicionario_linhas.filter((c) => {
       return c.marcat == marca_selecionada
-      // ? c:null
     })
-    this.filtrarModelos()
+  }
+
+  filtro_para_modelo(linha_selecionada) {
+    this.dicfiltrado_modelos = this.dicionario_modelo.filter((c) => {
+      return c.linhat == linha_selecionada
+    })
+    // this.filtrarModelos()
+  }
+
+  filtro_para_processador(modelo_selecionado) {
+    this.dicfiltrado_processador = this.dicionario_processador.filter((c) => {
+      return c.modelot == modelo_selecionado
+    })
   }
 }

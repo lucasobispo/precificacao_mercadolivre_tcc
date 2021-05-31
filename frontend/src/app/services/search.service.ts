@@ -27,10 +27,10 @@ export class SearchService {
     this.phone = object;
     var object1 = {
     "modelo_do_processador_y": this.phone.modelo_do_processador_y,
-    "com_leitor_de_impressao_digital": this.phone.com_leitor_de_impressao_digital,
-    "modelo_renomeado_upper": this.phone.modelo_renomeado_upper,
-    "condition": this.phone.condition,
-    "com_nfc": this.phone.com_nfc,
+    "com_leitor_de_impressao_digital": this.phone.com_leitor_de_impressao_digital.id,
+    "modelo_renomeado_upper": this.phone.modelo.toUpperCase(),
+    "condition": this.phone.condition.id,
+    "com_nfc": this.phone.com_nfc.id,
     "Linha": this.phone.Linha,
     "Marca": this.phone.Marca,
     "memoria_interna": this.phone.memoria_interna,
