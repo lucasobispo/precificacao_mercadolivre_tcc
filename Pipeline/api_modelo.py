@@ -2,16 +2,19 @@ import numpy as np
 from flask import Flask, request, jsonify
 import pickle
 import os
-import json 
+import json
 from pandas import json_normalize
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*":{"origins":"*"}})
 
-modelo = pickle.load(open(r"C:\Users\lucab\Documents\FTT\EC\precificacao_mercadolivre_tcc\Jupyer-Notebooks\precificacao_4vars.pk1",'rb'))
+# predicao = modelo.predict(np.array([list(dados.values())]))
 
-# modelo = pickle.load(open(r"~/precificacao_4vars.pk1",'rb'))
 
-# modelo = pickle.load(open(r"/Users/Ssilva3/Documents/GitHub/precificacao_mercadolivre_tcc/Jupyer-Notebooks/precificacao.pk1",'rb'))
+# modelo = pickle.load(open(r"C:\Users\lucab\Documents\FTT\EC\precificacao_mercadolivre>
+modelo = pickle.load(open(r"./precificacao_xboostFinal.pk1",'rb'))
+
 
 @app.route("/")
 def verifica_api_online():
@@ -20,18 +23,20 @@ def verifica_api_online():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-  dados = request.get_json(force=True)
-  json_string = json.dumps(dados)
-  data = json.loads(json_string)
-  dados = json_normalize(data)
-  predicao = modelo.predict(dados)
-  # predicao = modelo.predict(np.array([list(dados.values())]))
-  resultado = predicao[0]
+    dados = request.get_json(force=True)
+    print(dados)
+    json_string = json.dumps(dados)
+    data = json.loads(json_string)
+    dados = json_normalize(data)
+    predicao = modelo.predict(dados)
 
-  resposta = {'PRECO': float(resultado)}
-  return jsonify(resposta)
+    resultado = predicao[0]
+
+    resposta = {'PRECO': float(resultado)}
+    return jsonify(resposta)
 
 
 if __name__ == "__main__":
     porta = int(os.environ.get("PORT", 5000))
-    app.run(host='127.0.0.1', port=porta)
+    app.run(host='0.0.0.0', port=porta)
+
