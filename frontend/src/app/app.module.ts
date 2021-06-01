@@ -24,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatMenuModule } from '@angular/material/menu';
+import { pipe } from 'rxjs';
 //import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
@@ -51,7 +52,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [
     SearchService,

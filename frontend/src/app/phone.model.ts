@@ -1,16 +1,13 @@
 export class Phone {
-  // memory: number;
-  // ram_memory: number;
-  // Marca: string;
-	// Modelo: string;
-  // condition: string;
 
-  memoria_interna: number;
-  memoria_ram: number;
-  quantidade_sims: number;
-  ano_lancamento: number;
-  marca_renomeado_upper: string;
-  condition: string;
+  modelo_do_processador_y: string;
+  com_leitor_de_impressao_digital: any; //formatado
+  modelo: string;
+  condition: any; //formatado
+  com_nfc: any; //formatado
   Linha: string;
   Marca: string;
+  memoria_interna: number;
+  memoria_ram: number;
+
 }
