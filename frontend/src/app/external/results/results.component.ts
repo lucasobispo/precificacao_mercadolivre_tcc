@@ -133,8 +133,8 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.router.getCurrentNavigation() && this.router.getCurrentNavigation().extras.state) {
       this.phone = this.router.getCurrentNavigation().extras.state.phone;
       this.result = this.router.getCurrentNavigation().extras.state.result;
-      this.titulo = this.phone.Marca + " " + this.phone.Linha + " " +
-        this.phone.memoria_ram + " " + this.phone.memoria_interna + " " + this.phone.condition
+      this.titulo = this.phone.Marca + " " + this.phone.Linha + " " + this.phone.modelo + " " + this.phone.modelo_do_processador_y + " " +
+          this.phone.memoria_ram + "GB " + this.phone.memoria_interna + "GB " + this.phone.condition.value
     }
     else {
       this.phone = new Phone();

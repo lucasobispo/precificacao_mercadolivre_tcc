@@ -8,7 +8,8 @@ import { Phone } from '../phone.model';
   providedIn: 'root'
 })
 export class SearchService {
-  url: string = "http://3.227.36.209:5000"; ///IP da nuvem
+  // url: string = "http://3.227.36.209:5000"; ///IP da nuvem
+  url: string = "http://54.197.239.43:5000"; ///IP da nuvem
   // url: string = "http://127.0.0.1:5000"; //IP Local
   phone: Phone;
   constructor(private http: HttpClient) { }
