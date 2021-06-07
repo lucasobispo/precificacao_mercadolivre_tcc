@@ -17,7 +17,7 @@ html,body, section{
 }
 
 .mat-label, .mat-form-field, .ngx-mat-select-search {
-  font-size: 12px;
+  font-size: 13px;
   color: #1f1f22;
   background-color: white;
   height: 44px;

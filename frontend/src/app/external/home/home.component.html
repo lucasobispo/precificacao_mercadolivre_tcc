@@ -95,7 +95,7 @@
           <!-- possui nfc -->
           <div class="circle2">7</div>
           <mat-form-field appearance="fill" style="width: 140px;">
-            <mat-label>Possui NFC?</mat-label>
+            <mat-label>Possui NFC*?</mat-label>
             <mat-select [(ngModel)]="phone.com_nfc" ngDefaultControl>
               <mat-option *ngFor="let opcao of opcoes" [value]="opcao">
                 {{opcao.value}}
@@ -145,10 +145,11 @@
         </div>
 
         <div class="row">
-          <h3 style="color: white;">Quanto mais campos preenchidos, melhor o preço que podemos
-            sugerir.<br>
+          <h3 style="color: white;">
             Não sabe as especificações do seu celular? <a href="/modelfinder" style="color: white;">Clique aqui</a> e
-            descubra!</h3>
+            descubra!<br>
+            *NFC: NFC é uma tecnologia de comunicação de curtíssimo alcance. Um exemplo de seu uso, é quando você consegue
+            utilizar seu celular em pagamentos, apenas o encostando na máquininha :)</h3>
         </div>
       </div>
     </div>

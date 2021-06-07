@@ -14,10 +14,19 @@
   background-color: #f5f5f5;
   color: black;
   margin: 10px;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .box:hover{
   opacity: 1.0;
   box-shadow: 8px 8px 1px #dcdcdc;
+}
+
+b, a{
+  color: #2B00A1;
+  text-decoration: none;
+}
+
+a:hover{
+  color: black;
 }

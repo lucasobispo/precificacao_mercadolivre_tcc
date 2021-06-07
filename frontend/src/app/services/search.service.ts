@@ -38,7 +38,7 @@ export class SearchService {
     "memoria_ram": this.phone.memoria_ram
     }
 
-    console.log(object1);
+    // console.log(object1);
 
     // var object1 = {
     //   "memory": 64,
