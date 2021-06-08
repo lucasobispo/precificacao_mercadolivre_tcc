@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   memorias_ram = [{ id: 2, value: '2GB' }, { id: 3, value: '3GB' }, { id: 4, value: '4GB' }, { id: 6, value: '6GB' }, { id: 8, value: '8GB' }];
   capacidades = [{ id: 12, value: '12GB' }, { id: 24, value: '24GB' }, { id: 32, value: '32GB' }, { id: 48, value: '48GB' }, { id: 64, value: '64GB' }, { id: 128, value: '128GB' }];
-  conditions = [{ id: 1, value: 'Novo' }, { id: 0, value: 'Usado' }];
+  conditions = [{ id: 0, value: 'Novo' }, { id: 1, value: 'Usado' }];
   opcoes = [{ id: 1, value: 'Sim' }, { id: 0, value: 'Não' }];
   marcas = ['Apple', 'Motorola', 'Samsung', 'Xiaomi'];
 
