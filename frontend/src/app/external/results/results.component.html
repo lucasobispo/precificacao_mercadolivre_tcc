@@ -157,7 +157,8 @@
           </div>
           <div class="row">
             <div class="purplebox">
-              <p><label>{{result | currency: 'BRL':'symbol':'4.2-2'}}</label></p>
+              <p><label>{{(result | currency:'BRL':true:'1.2-2').replace(',','x').replace('.',',').replace('x','.')}}</label></p>
+                   <!-- {{(checkout.delivery_fee | currency).replace('.',',')}} -->
               <!-- <p><label>R$ 2.717,61</label></p> -->
             </div>
             <div class="row">

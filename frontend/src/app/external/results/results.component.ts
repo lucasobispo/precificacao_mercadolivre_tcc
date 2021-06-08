@@ -34,7 +34,7 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
   titulo: string;
 
   memorias_ram = [{ id: 2, value: '2GB' }, { id: 3, value: '3GB' }, { id: 4, value: '4GB' }, { id: 6, value: '6GB' }, { id: 8, value: '8GB' }];
-  capacidades = [{ id: 12, value: '12GB' }, { id: 24, value: '24GB' }, { id: 48, value: '48GB' }, { id: 64, value: '64GB' }, { id: 128, value: '128GB' }];
+  capacidades = [{ id: 12, value: '12GB' }, { id: 24, value: '24GB' }, { id: 32, value: '32GB' }, { id: 48, value: '48GB' }, { id: 64, value: '64GB' }, { id: 128, value: '128GB' }];
   conditions = [{ id: 1, value: 'Novo' }, { id: 0, value: 'Usado' }];
   opcoes = [{ id: 1, value: 'Sim' }, { id: 0, value: 'Não' }];
   marcas = ['Apple', 'Motorola', 'Samsung', 'Xiaomi'];
@@ -75,10 +75,11 @@ export class ResultsComponent implements OnInit, AfterViewInit, OnDestroy {
   {linhat:'Redmi',modelot:'Redmi 9 PRIME'},{linhat:'Redmi',modelot:'Redmi 9A'},{linhat:'Redmi',modelot:'Redmi 9C'},{linhat:'Redmi',modelot:'Redmi 9I'},{linhat:'Redmi',modelot:'Redmi 9T'},
   {linhat:'Redmi',modelot:'Redmi NOTE 10'},{linhat:'Redmi',modelot:'Redmi NOTE 7'},{linhat:'Redmi',modelot:'Redmi NOTE 8'},{linhat:'Redmi',modelot:'Redmi NOTE 8 PRO'},
   {linhat:'Redmi',modelot:'Redmi NOTE 9'},{linhat:'Redmi',modelot:'Redmi NOTE 9 PRO MAX'},{linhat:'Redmi',modelot:'Redmi NOTE 9S'}];
-  dicionario_linhas = [{marcat:'Samsung',linhat:'Galaxy'},{marcat:'Samsung',linhat:'Galaxy A'},{marcat:'Samsung',linhat:'Galaxy Grand'},{marcat:'Samsung',linhat:'Galaxy J'},
-  {marcat:'Samsung',linhat:'Galaxy S'},{marcat:'Apple',linhat:'iPhone'},{marcat:'Xiaomi',linhat:'Mi'},{marcat:'Motorola',linhat:'Moto'},{marcat:'Motorola',linhat:'Moto E'},
-  {marcat:'Motorola',linhat:'Moto G'},{marcat:'Motorola',linhat:'Moto X'},{marcat:'Motorola',linhat:'Moto Z'},{marcat:'Motorola',linhat:'One'}];
-  dicionario_processador = [{modelot:'iPhone 11',processadort:'A13 Bionic com Neural Engine de terceira gerac...'},{modelot:'iPhone 7',processadort:'Apple A10 Fusion'},
+  dicionario_linhas = [{marcat:'Samsung',linhat:'Galaxy'},{marcat:'Samsung',linhat:'Galaxy A'},{marcat:'Samsung',linhat:'Galaxy Grand'},
+  {marcat:'Samsung',linhat:'Galaxy J'},{marcat:'Samsung',linhat:'Galaxy S'},{marcat:'Apple',linhat:'iPhone'},{marcat:'Xiaomi',linhat:'Mi'},
+  {marcat:'Motorola',linhat:'Moto'},{marcat:'Motorola',linhat:'Moto E'},{marcat:'Motorola',linhat:'Moto G'},{marcat:'Motorola',linhat:'Moto X'},
+  {marcat:'Motorola',linhat:'Moto Z'},{marcat:'Motorola',linhat:'One'},{marcat:'Xiaomi',linhat:'Redmi'}];
+  dicionario_processador = [{modelot:'iPhone 7',processadort:'Apple A10 Fusion'},
   {modelot:'iPhone 7 PLUS',processadort:'Apple A10 Fusion'},{modelot:'iPhone 8',processadort:'Apple A11 Bionic'},{modelot:'iPhone 8 PLUS',processadort:'Apple A11 Bionic'},
   {modelot:'iPhone X',processadort:'Apple A11 Bionic'},{modelot:'iPhone 11',processadort:'Apple A12 Bionic'},{modelot:'iPhone XR',processadort:'Apple A12 Bionic'},
   {modelot:'iPhone XS',processadort:'Apple A12 Bionic'},{modelot:'iPhone XS MAX',processadort:'Apple A12 Bionic'},{modelot:'iPhone 11',processadort:'Apple A13 Bionic'},
